@@ -1145,6 +1145,26 @@
         .contact-info-value {
             font-family: 'JetBrains Mono', monospace;
         }
+        
+        /* Fix for mobile hologram overlap */
+        @media (max-width: 768px) {
+            .hero-content-wrapper {
+                min-height: 100vh;
+                padding-bottom: 120px; /* Add extra padding at bottom to prevent overlap */
+            }
+            
+            .hero-image-container {
+                margin-bottom: 100px; /* Add margin to prevent overlap with status bar */
+            }
+            
+            .status-bar {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+            }
+        }
     </style>
 </head>
 <body class="bg-terminal text-gray-300">
@@ -1213,7 +1233,7 @@
         <!-- Cyber Circuit Animation -->
         <div class="cyber-circuit"></div>
         
-        <div class="container mx-auto px-4 py-16 relative z-10">
+        <div class="container mx-auto px-4 py-16 relative z-10 hero-content-wrapper">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 text-center md:text-left">
                     <div class="mb-4 inline-block px-4 py-1 border border-neon text-neon text-sm font-mono">
@@ -1238,7 +1258,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center hero-image-container">
                     <div class="relative w-64 h-64 md:w-80 md:h-80 border-2 border-neon p-1 binary-transition">
                         <div class="absolute inset-0 bg-terminal-light flex items-center justify-center overflow-hidden">
                             <!-- 3D Cube Animation -->
@@ -1280,7 +1300,7 @@
         </div>
         
         <!-- Stats Bar -->
-        <div class="absolute bottom-0 left-0 right-0 bg-terminal-light border-t border-gray-800 py-4">
+        <div class="absolute bottom-0 left-0 right-0 bg-terminal-light border-t border-gray-800 py-4 status-bar">
             <div class="container mx-auto px-4">
                 <div class="flex flex-wrap justify-between items-center text-sm font-mono">
                     <div class="flex items-center mb-2 md:mb-0">
@@ -1908,7 +1928,7 @@ void aesDecrypt(uint8_t* ciphertext,
                                 </div>
                                 <div class="contact-info-content">
                                     <div class="contact-info-label text-gray-300 font-mono">Email</div>
-                                    <div class="contact-info-value text-neon break-all">adithyanbraj@gamil.com</div>
+                                    <div class="contact-info-value text-neon break-all">adithyanbraj@gmail.com</div>
                                 </div>
                             </div>
                             
@@ -2684,5 +2704,5 @@ void aesDecrypt(uint8_t* ciphertext,
             setInterval(createRadarBlips, 4000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e602c13367faf',t:'MTc1MzY0Mjc4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e7b87d79f2c07',t:'MTc1MzY0MzkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
