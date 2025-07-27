@@ -1,0 +1,2688 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adithyan B Raj | Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'terminal': '#0D1117',
+                        'terminal-light': '#161B22',
+                        'neon': '#00FF41',
+                        'neon-dim': '#00802B',
+                        'cyber': '#0AFFFF',
+                        'cyber-dim': '#008B8B',
+                        'danger': '#FF073A',
+                        'warning': '#FFCC00'
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace'],
+                        'glitch': ['VT323', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #0D1117;
+            color: #E6E6E6;
+        }
+        
+        /* Terminal effect */
+        .terminal-text {
+            position: relative;
+            color: #00FF41;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #00FF41;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00FF41 }
+        }
+        
+        /* Matrix rain effect */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .matrix-column {
+            position: absolute;
+            top: -100px;
+            color: #00FF41;
+            font-size: 1.5rem;
+            animation: fall linear infinite;
+            text-shadow: 0 0 5px #00FF41;
+            opacity: 0.8;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #FF073A;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+            clip: rect(44px, 450px, 56px, 0);
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #0AFFFF;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            clip: rect(24px, 450px, 36px, 0);
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(24px, 450px, 34px, 0); }
+            20% { clip: rect(62px, 450px, 84px, 0); }
+            40% { clip: rect(12px, 450px, 22px, 0); }
+            60% { clip: rect(54px, 450px, 73px, 0); }
+            80% { clip: rect(31px, 450px, 49px, 0); }
+            100% { clip: rect(16px, 450px, 29px, 0); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(34px, 450px, 44px, 0); }
+            20% { clip: rect(12px, 450px, 24px, 0); }
+            40% { clip: rect(62px, 450px, 74px, 0); }
+            60% { clip: rect(22px, 450px, 33px, 0); }
+            80% { clip: rect(59px, 450px, 69px, 0); }
+            100% { clip: rect(41px, 450px, 53px, 0); }
+        }
+        
+        /* Skill bar animation */
+        .skill-bar {
+            position: relative;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(0, 255, 65, 0.2);
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #00FF41;
+            animation: progress-animation 1.5s ease-out forwards;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        
+        @keyframes progress-animation {
+            to { transform: scaleX(1); }
+        }
+        
+        /* Hacker card effect */
+        .hacker-card {
+            background: #161B22;
+            border: 1px solid #30363D;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hacker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .hacker-card:hover::before {
+            left: 100%;
+        }
+        
+        .hacker-card:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+            transform: translateY(-5px);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0D1117;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00FF41;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00802B;
+        }
+        
+        /* Theme toggle button */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #161B22;
+            border: 1px solid #30363D;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: #00FF41;
+            transition: all 0.3s ease;
+        }
+        
+        html.light .theme-toggle {
+            background-color: #E5E7EB;
+        }
+        
+        html.light .theme-toggle::after {
+            transform: translateX(30px);
+            background-color: #4F46E5;
+        }
+        
+        /* Light mode styles */
+        html.light body {
+            background-color: #F9FAFB;
+            color: #1F2937;
+        }
+        
+        html.light .bg-terminal {
+            background-color: #F9FAFB;
+        }
+        
+        html.light .bg-terminal-light {
+            background-color: #FFFFFF;
+        }
+        
+        html.light .border-gray-800 {
+            border-color: #E5E7EB;
+        }
+        
+        html.light .text-gray-300,
+        html.light .text-gray-400 {
+            color: #4B5563;
+        }
+        
+        html.light .text-white {
+            color: #1F2937;
+        }
+        
+        html.light .text-neon {
+            color: #047857;
+        }
+        
+        html.light .text-cyber {
+            color: #0891B2;
+        }
+        
+        html.light .text-danger {
+            color: #DC2626;
+        }
+        
+        html.light .text-warning {
+            color: #D97706;
+        }
+        
+        html.light .border-neon {
+            border-color: #047857;
+        }
+        
+        html.light .border-cyber {
+            border-color: #0891B2;
+        }
+        
+        html.light .border-danger {
+            border-color: #DC2626;
+        }
+        
+        html.light .border-warning {
+            border-color: #D97706;
+        }
+        
+        html.light .bg-neon {
+            background-color: #047857;
+        }
+        
+        html.light .bg-cyber {
+            background-color: #0891B2;
+        }
+        
+        html.light .bg-danger {
+            background-color: #DC2626;
+        }
+        
+        html.light .bg-warning {
+            background-color: #D97706;
+        }
+        
+        html.light .skill-bar {
+            background: rgba(4, 120, 87, 0.2);
+        }
+        
+        html.light .skill-progress {
+            background: #047857;
+        }
+        
+        html.light .terminal-text {
+            color: #047857;
+            border-right-color: #047857;
+        }
+        
+        html.light ::-webkit-scrollbar-track {
+            background: #F9FAFB;
+        }
+        
+        html.light ::-webkit-scrollbar-thumb {
+            background: #047857;
+        }
+        
+        html.light ::-webkit-scrollbar-thumb:hover {
+            background: #065F46;
+        }
+        
+        html.light .console-typing::after {
+            color: #047857;
+        }
+        
+        html.light .nav-link::after {
+            background-color: #047857;
+        }
+        
+        html.light .encryption-cell {
+            background-color: rgba(4, 120, 87, 0.2);
+        }
+        
+        /* Binary background */
+        .binary {
+            position: absolute;
+            color: rgba(0, 255, 65, 0.1);
+            font-size: 10px;
+            z-index: -1;
+            user-select: none;
+        }
+        
+        html.light .binary {
+            color: rgba(4, 120, 87, 0.1);
+        }
+        
+        /* Console typing effect */
+        .console-typing::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Project card hover effect */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #30363D;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        html.light .project-card:hover {
+            box-shadow: 0 0 20px rgba(4, 120, 87, 0.3);
+        }
+        
+        /* Animated underline for links */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #00FF41;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active::after {
+            width: 100%;
+        }
+        
+        /* AES animation */
+        .aes-block {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 2px;
+            background-color: rgba(0, 255, 65, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .aes-animation:hover .aes-block {
+            animation: aes-shuffle 2s infinite;
+        }
+        
+        @keyframes aes-shuffle {
+            0% { transform: translateY(0); background-color: rgba(0, 255, 65, 0.2); }
+            25% { transform: translateY(-10px); background-color: rgba(0, 255, 65, 0.5); }
+            50% { transform: translateY(0); background-color: rgba(0, 255, 65, 0.8); }
+            75% { transform: translateY(10px); background-color: rgba(0, 255, 65, 0.5); }
+            100% { transform: translateY(0); background-color: rgba(0, 255, 65, 0.2); }
+        }
+        
+        html.light .aes-block {
+            background-color: rgba(4, 120, 87, 0.2);
+        }
+        
+        html.light .aes-animation:hover .aes-block {
+            animation-name: aes-shuffle-light;
+        }
+        
+        @keyframes aes-shuffle-light {
+            0% { transform: translateY(0); background-color: rgba(4, 120, 87, 0.2); }
+            25% { transform: translateY(-10px); background-color: rgba(4, 120, 87, 0.5); }
+            50% { transform: translateY(0); background-color: rgba(4, 120, 87, 0.8); }
+            75% { transform: translateY(10px); background-color: rgba(4, 120, 87, 0.5); }
+            100% { transform: translateY(0); background-color: rgba(4, 120, 87, 0.2); }
+        }
+        
+        /* Code animation */
+        .code-animation {
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+        
+        .code-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #00FF41;
+            white-space: nowrap;
+            animation: code-scroll 20s linear infinite;
+            opacity: 0.8;
+        }
+        
+        html.light .code-line {
+            color: #047857;
+        }
+        
+        @keyframes code-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-500px); }
+        }
+        
+        /* Pulse animation */
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
+        }
+        
+        html.light .pulse-animation {
+            animation-name: pulse-light;
+        }
+        
+        @keyframes pulse-light {
+            0% { box-shadow: 0 0 0 0 rgba(4, 120, 87, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(4, 120, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(4, 120, 87, 0); }
+        }
+        
+        /* Encryption visualization */
+        .encryption-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+        
+        .encryption-cell {
+            aspect-ratio: 1;
+            background-color: rgba(0, 255, 65, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .encryption-grid:hover .encryption-cell {
+            animation: encrypt 1.5s infinite;
+            animation-delay: calc(var(--cell-index) * 0.1s);
+        }
+        
+        @keyframes encrypt {
+            0% { background-color: rgba(0, 255, 65, 0.2); transform: rotateY(0deg); }
+            50% { background-color: rgba(0, 255, 65, 0.8); transform: rotateY(180deg); }
+            100% { background-color: rgba(0, 255, 65, 0.2); transform: rotateY(360deg); }
+        }
+        
+        html.light .encryption-grid:hover .encryption-cell {
+            animation-name: encrypt-light;
+        }
+        
+        @keyframes encrypt-light {
+            0% { background-color: rgba(4, 120, 87, 0.2); transform: rotateY(0deg); }
+            50% { background-color: rgba(4, 120, 87, 0.8); transform: rotateY(180deg); }
+            100% { background-color: rgba(4, 120, 87, 0.2); transform: rotateY(360deg); }
+        }
+        
+        /* NEW ANIMATIONS */
+        
+        /* Matrix Rain Animation */
+        #matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: #00FF41;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1;
+            opacity: 0;
+            animation: matrix-fall linear infinite;
+        }
+        
+        html.light .matrix-char {
+            color: rgba(4, 120, 87, 0.5);
+        }
+        
+        @keyframes matrix-fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(calc(100vh + 100px));
+            }
+        }
+        
+        /* Cyber Circuit Animation */
+        .cyber-circuit {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .circuit-line {
+            position: absolute;
+            background-color: #00FF41;
+            transform-origin: center;
+        }
+        
+        html.light .circuit-line {
+            background-color: #047857;
+        }
+        
+        .circuit-node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #00FF41;
+            transform: translate(-50%, -50%);
+        }
+        
+        html.light .circuit-node {
+            background-color: #047857;
+        }
+        
+        .circuit-pulse {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #00FF41;
+            transform: translate(-50%, -50%) scale(0);
+            animation: circuit-pulse 3s linear infinite;
+        }
+        
+        html.light .circuit-pulse {
+            background-color: #047857;
+        }
+        
+        @keyframes circuit-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+        
+        /* 3D Cube Animation */
+        .cube-container {
+            perspective: 800px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: cube-rotate 20s linear infinite;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #00FF41;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #00FF41;
+            background-color: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3) inset;
+        }
+        
+        html.light .cube-face {
+            border-color: #047857;
+            color: #047857;
+            background-color: rgba(4, 120, 87, 0.1);
+            box-shadow: 0 0 10px rgba(4, 120, 87, 0.3) inset;
+        }
+        
+        .cube-face:nth-child(1) { transform: translateZ(50px); }
+        .cube-face:nth-child(2) { transform: rotateY(180deg) translateZ(50px); }
+        .cube-face:nth-child(3) { transform: rotateY(90deg) translateZ(50px); }
+        .cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(50px); }
+        .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(50px); }
+        
+        @keyframes cube-rotate {
+            0% { transform: rotateX(0) rotateY(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+        
+        /* Particle Network Animation */
+        #particle-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: #00FF41;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+        }
+        
+        html.light .particle {
+            background-color: #047857;
+        }
+        
+        /* Typing Code Animation */
+        .typing-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #00FF41;
+            overflow: hidden;
+            white-space: pre;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html.light .typing-code {
+            color: #047857;
+        }
+        
+        .typing-code span {
+            opacity: 0;
+            animation: typing-appear 0.05s forwards;
+        }
+        
+        @keyframes typing-appear {
+            to { opacity: 1; }
+        }
+        
+        /* Hexagon Grid Animation */
+        .hexagon-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 5px;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .hexagon {
+            position: relative;
+            width: 100%;
+            padding-bottom: 115%; /* Aspect ratio for hexagon */
+        }
+        
+        .hexagon-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 255, 65, 0.1);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #00FF41;
+            transition: all 0.3s ease;
+        }
+        
+        html.light .hexagon-inner {
+            background-color: rgba(4, 120, 87, 0.1);
+            color: #047857;
+        }
+        
+        .hexagon-inner:hover {
+            background-color: rgba(0, 255, 65, 0.3);
+            transform: scale(1.1);
+        }
+        
+        html.light .hexagon-inner:hover {
+            background-color: rgba(4, 120, 87, 0.3);
+        }
+        
+        /* Data Stream Animation */
+        .data-stream {
+            position: relative;
+            height: 150px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .data-packet {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00FF41, transparent);
+            animation: data-flow linear infinite;
+        }
+        
+        html.light .data-packet {
+            background: linear-gradient(90deg, transparent, #047857, transparent);
+        }
+        
+        @keyframes data-flow {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw);
+                opacity: 0;
+            }
+        }
+        
+        /* Radar Scan Animation */
+        .radar-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .radar-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(45deg, transparent 50%, rgba(0, 255, 65, 0.5) 100%);
+            transform-origin: bottom right;
+            animation: radar-sweep 4s linear infinite;
+        }
+        
+        html.light .radar-scan {
+            background: linear-gradient(45deg, transparent 50%, rgba(4, 120, 87, 0.5) 100%);
+        }
+        
+        @keyframes radar-sweep {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .radar-blip {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #00FF41;
+            transform: translate(-50%, -50%);
+        }
+        
+        html.light .radar-blip {
+            background-color: #047857;
+        }
+        
+        .radar-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        html.light .radar-ring {
+            border-color: rgba(4, 120, 87, 0.3);
+        }
+        
+        /* Binary Transition Animation */
+        .binary-transition {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .binary-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .binary-transition:hover .binary-overlay {
+            opacity: 1;
+        }
+        
+        .binary-bit {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #00FF41;
+            animation: binary-fade 2s infinite;
+            animation-delay: calc(var(--delay) * 0.1s);
+        }
+        
+        html.light .binary-bit {
+            color: #047857;
+        }
+        
+        @keyframes binary-fade {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Loading Bar Animation */
+        .loading-bar-container {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .loading-bar {
+            height: 100%;
+            width: 30%;
+            background-color: #00FF41;
+            position: absolute;
+            animation: loading-progress 2s ease-in-out infinite;
+        }
+        
+        html.light .loading-bar {
+            background-color: #047857;
+        }
+        
+        @keyframes loading-progress {
+            0% { left: -30%; }
+            100% { left: 100%; }
+        }
+        
+        /* Cyber Lock Animation */
+        .cyber-lock {
+            width: 60px;
+            height: 80px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .lock-body {
+            width: 60px;
+            height: 45px;
+            background-color: #161B22;
+            border: 2px solid #00FF41;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+        
+        html.light .lock-body {
+            background-color: #F9FAFB;
+            border-color: #047857;
+            box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
+        }
+        
+        .lock-shackle {
+            width: 30px;
+            height: 35px;
+            border: 2px solid #00FF41;
+            border-bottom: none;
+            border-radius: 15px 15px 0 0;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            animation: lock-unlock 4s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+        
+        html.light .lock-shackle {
+            border-color: #047857;
+            box-shadow: 0 0 10px rgba(4, 120, 87, 0.3);
+        }
+        
+        @keyframes lock-unlock {
+            0%, 20%, 80%, 100% { transform: rotateY(0); }
+            30%, 70% { transform: rotateY(70deg); }
+        }
+        
+        .lock-keyhole {
+            width: 12px;
+            height: 18px;
+            background-color: #0D1117;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        html.light .lock-keyhole {
+            background-color: #E5E7EB;
+        }
+        
+        /* Digital Noise Animation */
+        .digital-noise {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        
+        /* Terminal Cursor Animation */
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #00FF41;
+            animation: cursor-blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+        
+        html.light .terminal-cursor {
+            background-color: #047857;
+        }
+        
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Cyber Button Animation */
+        .cyber-button {
+            position: relative;
+            background-color: transparent;
+            color: #00FF41;
+            border: 2px solid #00FF41;
+            padding: 10px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        html.light .cyber-button {
+            color: #047857;
+            border-color: #047857;
+        }
+        
+        .cyber-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        html.light .cyber-button::before {
+            background: linear-gradient(90deg, transparent, rgba(4, 120, 87, 0.2), transparent);
+        }
+        
+        .cyber-button:hover {
+            color: #000;
+            background-color: #00FF41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        html.light .cyber-button:hover {
+            background-color: #047857;
+            box-shadow: 0 0 20px rgba(4, 120, 87, 0.5);
+        }
+        
+        .cyber-button:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-button::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00FF41, transparent, #00FF41);
+            animation: cyber-button-glow 2s linear infinite;
+        }
+        
+        html.light .cyber-button::after {
+            background: linear-gradient(90deg, #047857, transparent, #047857);
+        }
+        
+        @keyframes cyber-button-glow {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Contact info box styles */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            background-color: #0D1117;
+            border: 1px solid;
+        }
+        
+        .contact-info-content {
+            flex-grow: 1;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+        
+        .contact-info-label {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-info-value {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-terminal text-gray-300">
+    <!-- Matrix Rain Animation -->
+    <canvas id="matrix-rain"></canvas>
+    
+    <!-- Particle Network -->
+    <div id="particle-network"></div>
+    
+    <!-- Binary Background -->
+    <div id="binary-background" class="fixed inset-0 overflow-hidden pointer-events-none"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-terminal-light border-b border-gray-800 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-neon font-mono flex items-center">
+                <span class="mr-2">&lt;</span>
+                <span class="glitch" data-text="ABR">ABR</span>
+                <span class="ml-2">/&gt;</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/home</a>
+                <a href="#about" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/about</a>
+                <a href="#skills" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/skills</a>
+                <a href="#projects" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/projects</a>
+                <a href="#contact" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/contact</a>
+                
+                <!-- Theme Toggle Button -->
+                <div id="theme-toggle" class="theme-toggle ml-4">
+                    <i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
+                    <i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
+                </div>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-400 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-terminal-light border-t border-gray-800 absolute w-full">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/home</a>
+                <a href="#about" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/about</a>
+                <a href="#skills" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/skills</a>
+                <a href="#projects" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/projects</a>
+                <a href="#contact" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/contact</a>
+                
+                <!-- Mobile Theme Toggle -->
+                <div class="flex items-center">
+                    <span class="text-gray-400 mr-3">Toggle Theme:</span>
+                    <div id="mobile-theme-toggle" class="theme-toggle">
+                        <i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
+                        <i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-16 relative overflow-hidden">
+        <!-- Cyber Circuit Animation -->
+        <div class="cyber-circuit"></div>
+        
+        <div class="container mx-auto px-4 py-16 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <div class="mb-4 inline-block px-4 py-1 border border-neon text-neon text-sm font-mono">
+                        <span class="mr-2">$</span>whoami
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-mono">
+                        <span class="text-white">I'm </span>
+                        <span class="text-neon terminal-text">Adithyan B Raj</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-light mb-6 font-mono text-cyber">
+                        Backend Developer & Security Enthusiast
+                    </h2>
+                    <p class="text-lg md:text-xl mb-8 text-gray-400 font-mono">
+                        <span class="console-typing" id="console-text"></span>
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#projects" class="cyber-button">
+                            <span class="mr-2">&lt;/&gt;</span> View My Work
+                        </a>
+                        <a href="#contact" class="cyber-button" style="--button-color: #0AFFFF;">
+                            <span class="mr-2">$</span> Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 border-2 border-neon p-1 binary-transition">
+                        <div class="absolute inset-0 bg-terminal-light flex items-center justify-center overflow-hidden">
+                            <!-- 3D Cube Animation -->
+                            <div class="cube-container">
+                                <div class="cube">
+                                    <div class="cube-face">AES-128</div>
+                                    <div class="cube-face">CRYPTO</div>
+                                    <div class="cube-face">SECURE</div>
+                                    <div class="cube-face">CIPHER</div>
+                                    <div class="cube-face">BACKEND</div>
+                                    <div class="cube-face">SYSTEMS</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Animated Terminal Lines -->
+                            <div class="absolute bottom-0 left-0 right-0 p-2 text-xs text-neon font-mono">
+                                <div id="terminal-lines"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Binary Overlay -->
+                        <div class="binary-overlay">
+                            <!-- Will be filled with JS -->
+                        </div>
+                        
+                        <!-- Corner Decorations -->
+                        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
+                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
+                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Stream Animation -->
+        <div class="absolute bottom-16 left-0 right-0 h-2 overflow-hidden">
+            <div id="data-stream-container"></div>
+        </div>
+        
+        <!-- Stats Bar -->
+        <div class="absolute bottom-0 left-0 right-0 bg-terminal-light border-t border-gray-800 py-4">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-between items-center text-sm font-mono">
+                    <div class="flex items-center mb-2 md:mb-0">
+                        <div class="w-3 h-3 rounded-full bg-neon mr-2 pulse-animation"></div>
+                        <span class="text-gray-400">Status: <span class="text-neon">Online</span></span>
+                    </div>
+                    <div class="flex items-center mb-2 md:mb-0">
+                        <i class="fas fa-code text-cyber mr-2"></i>
+                        <span class="text-gray-400">Languages: <span class="text-cyber">C/C++, Java, Python</span></span>
+                    </div>
+                    <div class="flex items-center mb-2 md:mb-0">
+                        <i class="fas fa-database text-warning mr-2"></i>
+                        <span class="text-gray-400">Database: <span class="text-warning">SQL</span></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-shield-alt text-danger mr-2"></i>
+                        <span class="text-gray-400">Security: <span class="text-danger">AES-128</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-terminal-light relative">
+        <!-- Digital Noise Overlay -->
+        <div class="digital-noise absolute inset-0">
+            <div class="noise-overlay"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+                    <span class="mr-2">$</span>cat about.txt
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">About Me</h2>
+                <div class="w-24 h-1 bg-neon mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative border-2 border-neon p-4 mx-auto max-w-md">
+                        <!-- Terminal Window -->
+                        <div class="bg-terminal rounded-none overflow-hidden">
+                            <!-- Terminal Header -->
+                            <div class="bg-gray-800 px-4 py-2 flex items-center">
+                                <div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
+                                <div class="w-3 h-3 rounded-full bg-neon mr-2"></div>
+                                <div class="text-gray-400 text-xs font-mono ml-2">adithyan@hackermachine: ~/profile</div>
+                            </div>
+                            
+                            <!-- Terminal Content -->
+                            <div class="p-4 font-mono text-sm">
+                                <div id="typing-terminal"></div>
+                                <div class="terminal-cursor"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Corner Decorations -->
+                        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
+                        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
+                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
+                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10">
+                    <h3 class="text-2xl font-bold text-neon mb-6 font-mono">Backend Developer & Security Enthusiast</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed font-mono">
+                        I'm Adithyan B Raj, a backend developer with a strong foundation in systems programming 
+                        and security. My expertise lies in developing robust backend solutions using C, C++, 
+                        Java, and Python. I'm particularly interested in cryptography and secure system design.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed font-mono">
+                        My approach combines technical knowledge with practical implementation, allowing me to 
+                        create systems that are not only functional but also secure. I've worked on projects 
+                        involving encryption/decryption algorithms, with a focus on AES-128 bit implementation.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="border border-gray-800 p-4 hacker-card">
+                            <h4 class="text-cyber font-bold mb-2 font-mono">Languages</h4>
+                            <p class="text-gray-400 font-mono">C, C++, Java, Python</p>
+                        </div>
+                        <div class="border border-gray-800 p-4 hacker-card">
+                            <h4 class="text-cyber font-bold mb-2 font-mono">Database</h4>
+                            <p class="text-gray-400 font-mono">SQL, Database Management</p>
+                        </div>
+                        <div class="border border-gray-800 p-4 hacker-card">
+                            <h4 class="text-cyber font-bold mb-2 font-mono">Systems</h4>
+                            <p class="text-gray-400 font-mono">Operating Systems, System Design</p>
+                        </div>
+                        <div class="border border-gray-800 p-4 hacker-card">
+                            <h4 class="text-cyber font-bold mb-2 font-mono">Security</h4>
+                            <p class="text-gray-400 font-mono">Cryptography, AES Implementation</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="cyber-button">
+                        <span class="mr-2">$</span>Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-terminal relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+                    <span class="mr-2">$</span>ls -la skills/
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Technical Skills</h2>
+                <div class="w-24 h-1 bg-neon mx-auto"></div>
+            </div>
+            
+            <!-- Hexagon Grid Animation -->
+            <div class="hexagon-grid mb-12">
+                <div class="hexagon">
+                    <div class="hexagon-inner">C</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">C++</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">Java</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">Python</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">SQL</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">OS</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">DBMS</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">AES</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">DSA</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">OOP</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">Linux</div>
+                </div>
+                <div class="hexagon">
+                    <div class="hexagon-inner">Crypto</div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Programming Languages Skills -->
+                <div class="border border-gray-800 p-6">
+                    <h3 class="text-2xl font-bold text-neon mb-6 font-mono flex items-center">
+                        <i class="fas fa-code mr-3"></i>
+                        Programming Languages
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">C</span>
+                                <span class="text-neon font-mono">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">C++</span>
+                                <span class="text-neon font-mono">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Java</span>
+                                <span class="text-neon font-mono">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Python</span>
+                                <span class="text-neon font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Data Structures & Algorithms</span>
+                                <span class="text-neon font-mono">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Database Skills -->
+                <div class="border border-gray-800 p-6">
+                    <h3 class="text-2xl font-bold text-cyber mb-6 font-mono flex items-center">
+                        <i class="fas fa-database mr-3"></i>
+                        Database Systems
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">SQL</span>
+                                <span class="text-cyber font-mono">80%</span>
+                            </div>
+                            <div class="skill-bar bg-cyber bg-opacity-20">
+                                <div class="skill-progress bg-cyber" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Database Design</span>
+                                <span class="text-cyber font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar bg-cyber bg-opacity-20">
+                                <div class="skill-progress bg-cyber" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Query Optimization</span>
+                                <span class="text-cyber font-mono">70%</span>
+                            </div>
+                            <div class="skill-bar bg-cyber bg-opacity-20">
+                                <div class="skill-progress bg-cyber" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Database Management</span>
+                                <span class="text-cyber font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar bg-cyber bg-opacity-20">
+                                <div class="skill-progress bg-cyber" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Data Modeling</span>
+                                <span class="text-cyber font-mono">70%</span>
+                            </div>
+                            <div class="skill-bar bg-cyber bg-opacity-20">
+                                <div class="skill-progress bg-cyber" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Skills -->
+                <div class="border border-gray-800 p-6">
+                    <h3 class="text-2xl font-bold text-warning mb-6 font-mono flex items-center">
+                        <i class="fas fa-laptop-code mr-3"></i>
+                        System Development
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Operating Systems</span>
+                                <span class="text-warning font-mono">85%</span>
+                            </div>
+                            <div class="skill-bar bg-warning bg-opacity-20">
+                                <div class="skill-progress bg-warning" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">System Design</span>
+                                <span class="text-warning font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar bg-warning bg-opacity-20">
+                                <div class="skill-progress bg-warning" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Backend Architecture</span>
+                                <span class="text-warning font-mono">70%</span>
+                            </div>
+                            <div class="skill-bar bg-warning bg-opacity-20">
+                                <div class="skill-progress bg-warning" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Memory Management</span>
+                                <span class="text-warning font-mono">80%</span>
+                            </div>
+                            <div class="skill-bar bg-warning bg-opacity-20">
+                                <div class="skill-progress bg-warning" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Process Management</span>
+                                <span class="text-warning font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar bg-warning bg-opacity-20">
+                                <div class="skill-progress bg-warning" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Security Skills -->
+                <div class="border border-gray-800 p-6">
+                    <h3 class="text-2xl font-bold text-danger mb-6 font-mono flex items-center">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Security & Cryptography
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">AES Encryption/Decryption</span>
+                                <span class="text-danger font-mono">90%</span>
+                            </div>
+                            <div class="skill-bar bg-danger bg-opacity-20">
+                                <div class="skill-progress bg-danger" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Cryptographic Algorithms</span>
+                                <span class="text-danger font-mono">85%</span>
+                            </div>
+                            <div class="skill-bar bg-danger bg-opacity-20">
+                                <div class="skill-progress bg-danger" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Secure Coding Practices</span>
+                                <span class="text-danger font-mono">75%</span>
+                            </div>
+                            <div class="skill-bar bg-danger bg-opacity-20">
+                                <div class="skill-progress bg-danger" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Authentication Systems</span>
+                                <span class="text-danger font-mono">70%</span>
+                            </div>
+                            <div class="skill-bar bg-danger bg-opacity-20">
+                                <div class="skill-progress bg-danger" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-300 font-mono">Data Protection</span>
+                                <span class="text-danger font-mono">80%</span>
+                            </div>
+                            <div class="skill-bar bg-danger bg-opacity-20">
+                                <div class="skill-progress bg-danger" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Radar Animation -->
+            <div class="mt-12 border border-gray-800 p-6">
+                <h3 class="text-xl font-bold text-white mb-6 font-mono text-center">Skills Radar</h3>
+                
+                <div class="radar-container mb-8">
+                    <div class="radar-scan"></div>
+                    <div class="radar-ring" style="width: 40%; height: 40%;"></div>
+                    <div class="radar-ring" style="width: 70%; height: 70%;"></div>
+                    <div class="radar-ring" style="width: 100%; height: 100%;"></div>
+                    <!-- Radar blips will be added with JS -->
+                </div>
+                
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Algorithms</span>
+                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Data Structures</span>
+                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">OOP</span>
+                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">DBMS</span>
+                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Linux</span>
+                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">System Calls</span>
+                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">AES-128</span>
+                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Encryption</span>
+                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Multithreading</span>
+                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">SQL Queries</span>
+                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Memory Management</span>
+                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Decryption</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-terminal-light relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+                    <span class="mr-2">$</span>ls -la projects/
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Featured Projects</h2>
+                <div class="w-24 h-1 bg-neon mx-auto"></div>
+            </div>
+            
+            <!-- Loading Bar Animation -->
+            <div class="loading-bar-container mb-12">
+                <div class="loading-bar"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Main Project -->
+                <div class="project-card bg-terminal rounded-none overflow-hidden mb-12">
+                    <div class="h-64 bg-terminal flex items-center justify-center relative overflow-hidden">
+                        <!-- Project Visual -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <!-- Cyber Lock Animation -->
+                            <div class="cyber-lock mb-4">
+                                <div class="lock-shackle"></div>
+                                <div class="lock-body">
+                                    <div class="lock-keyhole"></div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-neon font-mono text-lg mt-4">AES-128 Decryption Tool</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Code Overlay -->
+                        <div class="absolute inset-0 bg-terminal bg-opacity-80 opacity-20 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center p-4">
+                            <pre class="text-neon text-xs overflow-hidden font-mono">
+<code>// AES-128 Decryption Implementation
+void aesDecrypt(uint8_t* ciphertext, 
+                uint8_t* key, 
+                uint8_t* plaintext) {
+    
+    // Key expansion for decryption
+    uint8_t roundKeys[11][16];
+    keyExpansion(key, roundKeys);
+    
+    // Initial round
+    addRoundKey(ciphertext, roundKeys[10]);
+    
+    // Main rounds
+    for (int round = 9; round > 0; round--) {
+        invShiftRows(ciphertext);
+        invSubBytes(ciphertext);
+        addRoundKey(ciphertext, roundKeys[round]);
+        invMixColumns(ciphertext);
+    }
+    
+    // Final round
+    invShiftRows(ciphertext);
+    invSubBytes(ciphertext);
+    addRoundKey(ciphertext, roundKeys[0]);
+    
+    // Copy result to plaintext
+    memcpy(plaintext, ciphertext, 16);
+}</code>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="p-6 border-t border-gray-800">
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-xl font-bold text-neon font-mono">AES-128 Decryption Tool</h3>
+                            <div class="flex space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-neon"></span>
+                                <span class="w-3 h-3 rounded-full bg-danger"></span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 mb-4 font-mono text-sm">
+                            A software tool that decrypts 128-bit AES encrypted content. This project implements the full AES decryption algorithm including key expansion, inverse substitution, row shifting, and column mixing operations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C</span>
+                            <span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C++</span>
+                            <span class="bg-terminal border border-cyber text-cyber text-xs px-2 py-1 font-mono">Cryptography</span>
+                            <span class="bg-terminal border border-danger text-danger text-xs px-2 py-1 font-mono">AES-128</span>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-white font-bold mb-2 font-mono">Key Features:</h4>
+                            <ul class="list-disc list-inside text-gray-400 font-mono text-sm space-y-1">
+                                <li>Full implementation of AES-128 decryption algorithm</li>
+                                <li>Optimized for performance with minimal memory footprint</li>
+                                <li>Support for various key formats and padding schemes</li>
+                                <li>Command-line interface for batch processing</li>
+                                <li>Detailed logging and error handling</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-white font-bold mb-2 font-mono">Technical Challenges:</h4>
+                            <p class="text-gray-400 font-mono text-sm">
+                                The main challenge was implementing the complex mathematical operations of AES, particularly the inverse mix columns transformation and key schedule. Optimizing the algorithm for speed while ensuring correctness required careful testing and validation against known test vectors.
+                            </p>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <button class="cyber-button text-sm">
+                                View Project Details
+                                <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                            <a href="#" class="text-gray-400 hover:text-neon">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Future Projects Section -->
+                <div class="border border-gray-800 p-6">
+                    <h3 class="text-xl font-bold text-white mb-6 font-mono">Upcoming Projects</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-terminal p-3 border border-cyber mr-4">
+                                <i class="fas fa-database text-cyber"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-300 font-medium font-mono">Advanced Database Management System</h4>
+                                <p class="text-gray-400 font-mono text-sm mt-1">A custom DBMS implementation with focus on security and performance.</p>
+                                <!-- Progress Bar -->
+                                <div class="mt-2 w-full bg-terminal-light h-1">
+                                    <div class="bg-cyber h-full" style="width: 65%"></div>
+                                </div>
+                                <p class="text-xs text-cyber mt-1">65% Complete</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-terminal p-3 border border-warning mr-4">
+                                <i class="fas fa-laptop-code text-warning"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-300 font-medium font-mono">Lightweight Operating System Kernel</h4>
+                                <p class="text-gray-400 font-mono text-sm mt-1">A minimal OS kernel implementation focusing on core concepts and memory management.</p>
+                                <!-- Progress Bar -->
+                                <div class="mt-2 w-full bg-terminal-light h-1">
+                                    <div class="bg-warning h-full" style="width: 40%"></div>
+                                </div>
+                                <p class="text-xs text-warning mt-1">40% Complete</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-terminal p-3 border border-danger mr-4">
+                                <i class="fas fa-shield-alt text-danger"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-gray-300 font-medium font-mono">Secure File System</h4>
+                                <p class="text-gray-400 font-mono text-sm mt-1">A file system with built-in encryption and access control mechanisms.</p>
+                                <!-- Progress Bar -->
+                                <div class="mt-2 w-full bg-terminal-light h-1">
+                                    <div class="bg-danger h-full" style="width: 25%"></div>
+                                </div>
+                                <p class="text-xs text-danger mt-1">25% Complete</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-terminal relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+                    <span class="mr-2">$</span>ssh user@contact
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Get In Touch</h2>
+                <div class="w-24 h-1 bg-neon mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-10 max-w-4xl mx-auto">
+                <div class="md:w-2/5">
+                    <div class="bg-terminal-light border border-gray-800 p-6 h-full">
+                        <h3 class="text-xl font-bold text-white mb-6 font-mono">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Email - Redesigned with more space -->
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon border-neon">
+                                    <i class="fas fa-envelope text-neon text-xl"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-label text-gray-300 font-mono">Email</div>
+                                    <div class="contact-info-value text-neon break-all">adithyanbraj@gamil.com</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Website - Redesigned with more space -->
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon border-cyber">
+                                    <i class="fas fa-globe text-cyber text-xl"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-label text-gray-300 font-mono">Website</div>
+                                    <div class="contact-info-value text-cyber break-all">https://github.com/Adithyan-b-raj</div>
+                                </div>
+                            </div>
+                            
+                            <!-- PGP Key - Redesigned with more space -->
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon border-warning">
+                                    <i class="fas fa-key text-warning text-xl"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <div class="contact-info-label text-gray-300 font-mono">PGP Key</div>
+                                    <div class="contact-info-value text-warning break-all">0xAB42DE...F7</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-gray-300 font-medium mb-4 font-mono">Connect</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-terminal p-3 border border-neon text-neon hover:bg-neon hover:bg-opacity-10 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="bg-terminal p-3 border border-cyber text-cyber hover:bg-cyber hover:bg-opacity-10 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-terminal p-3 border border-warning text-warning hover:bg-warning hover:bg-opacity-10 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-terminal p-3 border border-danger text-danger hover:bg-danger hover:bg-opacity-10 transition">
+                                    <i class="fab fa-stack-overflow"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-3/5">
+                    <div class="bg-terminal-light border border-gray-800 p-6">
+                        <h3 class="text-xl font-bold text-white mb-6 font-mono">Send Message</h3>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-300 font-medium mb-2 font-mono">Name</label>
+                                    <input type="text" id="name" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-gray-300 font-medium mb-2 font-mono">Email</label>
+                                    <input type="email" id="email" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-gray-300 font-medium mb-2 font-mono">Subject</label>
+                                <input type="text" id="subject" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-300 font-medium mb-2 font-mono">Message</label>
+                                <textarea id="message" rows="5" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_"></textarea>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="cyber-button w-full">
+                                    <span class="mr-2">$</span>send --message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-terminal-light border-t border-gray-800 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-neon font-mono flex items-center">
+                        <span class="mr-2">&lt;</span>
+                        ABR
+                        <span class="ml-2">/&gt;</span>
+                    </a>
+                    <p class="mt-2 text-gray-500 font-mono">Backend Developer & Security Enthusiast</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6 font-mono">
+                    <a href="#home" class="text-gray-400 hover:text-neon transition">~/home</a>
+                    <a href="#about" class="text-gray-400 hover:text-neon transition">~/about</a>
+                    <a href="#skills" class="text-gray-400 hover:text-neon transition">~/skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-neon transition">~/projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-neon transition">~/contact</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 font-mono">
+                <p>&copy; 2023 | <span class="text-neon">Adithyan B Raj</span> | All rights reserved.</p>
+                <p class="mt-2 text-xs">This site is protected by AES-128 encryption.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-neon text-terminal w-12 h-12 flex items-center justify-center border-2 border-neon opacity-0 invisible transition-all duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script>
+        // Matrix Rain Animation
+        function initMatrixRain() {
+            const canvas = document.getElementById('matrix-rain');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const characters = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+            const fontSize = 14;
+            const columns = Math.floor(canvas.width / fontSize);
+            
+            // Array to track the y position of each column
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+            
+            function draw() {
+                // Semi-transparent black to create fade effect
+                ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Check if light mode is active
+                const isLightMode = document.documentElement.classList.contains('light');
+                ctx.fillStyle = isLightMode ? '#047857' : '#00FF41';
+                ctx.font = `${fontSize}px JetBrains Mono`;
+                
+                // Loop over each column
+                for (let i = 0; i < drops.length; i++) {
+                    // Choose a random character
+                    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    
+                    // Draw the character
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    // Reset to the top when it reaches the bottom
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    // Move the drop down
+                    drops[i]++;
+                }
+                
+                requestAnimationFrame(draw);
+            }
+            
+            draw();
+            
+            // Resize canvas when window size changes
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                // Recalculate columns
+                const newColumns = Math.floor(canvas.width / fontSize);
+                
+                // Adjust drops array
+                if (newColumns > drops.length) {
+                    for (let i = drops.length; i < newColumns; i++) {
+                        drops.push(Math.random() * -100);
+                    }
+                } else if (newColumns < drops.length) {
+                    drops.splice(newColumns);
+                }
+            });
+        }
+        
+        // Particle Network Animation
+        function initParticleNetwork() {
+            const container = document.getElementById('particle-network');
+            const particleCount = 50;
+            const particles = [];
+            const connections = [];
+            const connectionDistance = 150;
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const speedX = (Math.random() - 0.5) * 0.5;
+                const speedY = (Math.random() - 0.5) * 0.5;
+                
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                container.appendChild(particle);
+                
+                particles.push({
+                    element: particle,
+                    x,
+                    y,
+                    speedX,
+                    speedY
+                });
+            }
+            
+            // Create SVG for connections
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.style.position = 'absolute';
+            svg.style.top = '0';
+            svg.style.left = '0';
+            svg.style.zIndex = '-1';
+            container.appendChild(svg);
+            
+            // Animation loop
+            function animate() {
+                // Update particle positions
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > window.innerWidth) {
+                        particle.speedX *= -1;
+                    }
+                    
+                    if (particle.y < 0 || particle.y > window.innerHeight) {
+                        particle.speedY *= -1;
+                    }
+                    
+                    // Update DOM element position
+                    particle.element.style.left = `${particle.x}px`;
+                    particle.element.style.top = `${particle.y}px`;
+                });
+                
+                // Clear old connections
+                while (svg.firstChild) {
+                    svg.removeChild(svg.firstChild);
+                }
+                
+                // Draw connections between nearby particles
+                const isLightMode = document.documentElement.classList.contains('light');
+                const connectionColor = isLightMode ? '#047857' : '#00FF41';
+                
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < connectionDistance) {
+                            const opacity = 1 - (distance / connectionDistance);
+                            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                            line.setAttribute('x1', particles[i].x);
+                            line.setAttribute('y1', particles[i].y);
+                            line.setAttribute('x2', particles[j].x);
+                            line.setAttribute('y2', particles[j].y);
+                            line.setAttribute('stroke', connectionColor);
+                            line.setAttribute('stroke-opacity', opacity * 0.2);
+                            svg.appendChild(line);
+                        }
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Resize handler
+            window.addEventListener('resize', () => {
+                // Update particle positions to stay within new window size
+                particles.forEach(particle => {
+                    if (particle.x > window.innerWidth) {
+                        particle.x = window.innerWidth - 10;
+                    }
+                    if (particle.y > window.innerHeight) {
+                        particle.y = window.innerHeight - 10;
+                    }
+                });
+            });
+        }
+        
+        // Generate Binary Background
+        function generateBinaryBackground() {
+            const container = document.getElementById('binary-background');
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            
+            // Clear previous binary
+            container.innerHTML = '';
+            
+            // Create binary elements
+            for (let i = 0; i < 100; i++) {
+                const binary = document.createElement('div');
+                binary.classList.add('binary');
+                binary.style.left = `${Math.random() * containerWidth}px`;
+                binary.style.top = `${Math.random() * containerHeight}px`;
+                binary.textContent = Math.random() > 0.5 ? '1' : '0';
+                container.appendChild(binary);
+            }
+        }
+        
+        // Terminal typing effect
+        function terminalTypingEffect() {
+            const text = "Specializing in backend development, systems programming, and cryptography with expertise in C, C++, Java, and Python.";
+            const consoleText = document.getElementById('console-text');
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    consoleText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, Math.random() * 50 + 30);
+                }
+            }
+            
+            typeWriter();
+        }
+        
+        // Terminal lines animation
+        function animateTerminalLines() {
+            const terminalLines = document.getElementById('terminal-lines');
+            const commands = [
+                'gcc -o decrypt aes_decrypt.c',
+                './decrypt -k keyfile.bin -i encrypted.dat',
+                'hexdump -C decrypted.bin',
+                'valgrind --leak-check=full ./decrypt',
+                'gdb ./decrypt',
+                'make clean && make',
+                'python analyze_entropy.py',
+                'java -jar AESBenchmark.jar',
+                'objdump -d decrypt',
+                'nm -a decrypt'
+            ];
+            
+            let index = 0;
+            
+            function addLine() {
+                if (terminalLines) {
+                    const line = document.createElement('div');
+                    line.classList.add('mb-1');
+                    
+                    const prompt = document.createElement('span');
+                    prompt.classList.add('text-neon');
+                    prompt.textContent = '$ ';
+                    
+                    const command = document.createElement('span');
+                    command.textContent = commands[index % commands.length];
+                    
+                    line.appendChild(prompt);
+                    line.appendChild(command);
+                    
+                    terminalLines.appendChild(line);
+                    terminalLines.scrollTop = terminalLines.scrollHeight;
+                    
+                    // Keep only the last 4 lines
+                    if (terminalLines.children.length > 4) {
+                        terminalLines.removeChild(terminalLines.firstChild);
+                    }
+                    
+                    index++;
+                }
+                
+                setTimeout(addLine, Math.random() * 2000 + 1000);
+            }
+            
+            addLine();
+        }
+        
+        // Set cell index for encryption grid
+        function setEncryptionCellIndices() {
+            const cells = document.querySelectorAll('.encryption-cell');
+            cells.forEach((cell, index) => {
+                cell.style.setProperty('--cell-index', index);
+            });
+        }
+        
+        // Create Cyber Circuit Animation
+        function createCyberCircuit() {
+            const container = document.querySelector('.cyber-circuit');
+            if (!container) return;
+            
+            // Clear previous circuit
+            container.innerHTML = '';
+            
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+            
+            // Create nodes
+            const nodeCount = 15;
+            const nodes = [];
+            
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.classList.add('circuit-node');
+                
+                const x = Math.random() * width;
+                const y = Math.random() * height;
+                
+                node.style.left = `${x}px`;
+                node.style.top = `${y}px`;
+                
+                container.appendChild(node);
+                nodes.push({ x, y, element: node });
+            }
+            
+            // Create lines between nodes
+            for (let i = 0; i < nodes.length; i++) {
+                const connections = Math.floor(Math.random() * 2) + 1; // 1-2 connections per node
+                
+                for (let j = 0; j < connections; j++) {
+                    const targetIndex = (i + j + 1) % nodes.length;
+                    
+                    const line = document.createElement('div');
+                    line.classList.add('circuit-line');
+                    
+                    const x1 = nodes[i].x;
+                    const y1 = nodes[i].y;
+                    const x2 = nodes[targetIndex].x;
+                    const y2 = nodes[targetIndex].y;
+                    
+                    // Calculate line length and angle
+                    const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                    
+                    line.style.width = `${length}px`;
+                    line.style.height = '1px';
+                    line.style.left = `${x1}px`;
+                    line.style.top = `${y1}px`;
+                    line.style.transform = `rotate(${angle}deg)`;
+                    
+                    container.appendChild(line);
+                }
+            }
+            
+            // Add pulsing effect to random nodes
+            for (let i = 0; i < 5; i++) {
+                const randomNodeIndex = Math.floor(Math.random() * nodes.length);
+                const pulse = document.createElement('div');
+                pulse.classList.add('circuit-pulse');
+                pulse.style.left = `${nodes[randomNodeIndex].x}px`;
+                pulse.style.top = `${nodes[randomNodeIndex].y}px`;
+                pulse.style.animationDelay = `${i * 0.5}s`;
+                
+                container.appendChild(pulse);
+            }
+        }
+        
+        // Create Binary Overlay
+        function createBinaryOverlay() {
+            const overlays = document.querySelectorAll('.binary-overlay');
+            
+            overlays.forEach(overlay => {
+                // Clear previous content
+                overlay.innerHTML = '';
+                
+                const width = overlay.offsetWidth;
+                const height = overlay.offsetHeight;
+                
+                // Calculate how many bits we need
+                const bitSize = 12; // Size of each bit element
+                const columns = Math.ceil(width / bitSize);
+                const rows = Math.ceil(height / bitSize);
+                
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < columns; j++) {
+                        const bit = document.createElement('div');
+                        bit.classList.add('binary-bit');
+                        bit.textContent = Math.random() > 0.5 ? '1' : '0';
+                        bit.style.width = `${bitSize}px`;
+                        bit.style.height = `${bitSize}px`;
+                        bit.style.setProperty('--delay', i + j);
+                        
+                        overlay.appendChild(bit);
+                    }
+                }
+            });
+        }
+        
+        // Create Data Stream Animation
+        function createDataStream() {
+            const container = document.getElementById('data-stream-container');
+            if (!container) return;
+            
+            // Create data packets
+            for (let i = 0; i < 20; i++) {
+                const packet = document.createElement('div');
+                packet.classList.add('data-packet');
+                
+                // Random position and speed
+                const y = Math.random() * 100;
+                const width = Math.random() * 50 + 20;
+                const speed = Math.random() * 5 + 3;
+                
+                packet.style.top = `${y}%`;
+                packet.style.width = `${width}px`;
+                packet.style.animationDuration = `${speed}s`;
+                packet.style.animationDelay = `${i * 0.2}s`;
+                
+                container.appendChild(packet);
+            }
+        }
+        
+        // Create Radar Blips
+        function createRadarBlips() {
+            const radar = document.querySelector('.radar-container');
+            if (!radar) return;
+            
+            // Clear previous blips
+            const existingBlips = radar.querySelectorAll('.radar-blip');
+            existingBlips.forEach(blip => blip.remove());
+            
+            // Create new blips
+            for (let i = 0; i < 8; i++) {
+                const blip = document.createElement('div');
+                blip.classList.add('radar-blip');
+                
+                // Random position within the radar
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 80;
+                
+                const x = 50 + Math.cos(angle) * distance;
+                const y = 50 + Math.sin(angle) * distance;
+                
+                blip.style.left = `${x}%`;
+                blip.style.top = `${y}%`;
+                
+                radar.appendChild(blip);
+            }
+        }
+        
+        // Typing Code Animation
+        function typingCodeAnimation() {
+            const typingTerminal = document.getElementById('typing-terminal');
+            if (!typingTerminal) return;
+            
+            const commands = [
+                { text: '$ whoami', delay: 100 },
+                { text: 'adithyan_b_raj', delay: 800 },
+                { text: '', delay: 500 },
+                { text: '$ cat skills.txt', delay: 100 },
+                { text: 'C, C++, Java, Python, OS, DBMS, System Design', delay: 800 },
+                { text: '', delay: 500 },
+                { text: '$ cat projects.txt', delay: 100 },
+                { text: 'AES-128 Decryption Tool', delay: 800 },
+                { text: '', delay: 500 },
+                { text: '$ cat interests.txt', delay: 100 },
+                { text: 'Backend Development, Cryptography, System Architecture', delay: 800 },
+                { text: '', delay: 500 },
+                { text: '$ _', delay: 100 }
+            ];
+            
+            let commandIndex = 0;
+            let charIndex = 0;
+            
+            function typeNextChar() {
+                if (commandIndex >= commands.length) {
+                    commandIndex = 0;
+                    typingTerminal.innerHTML = '';
+                }
+                
+                const command = commands[commandIndex];
+                
+                if (charIndex === 0) {
+                    // Start a new line
+                    const line = document.createElement('div');
+                    line.classList.add('mb-2');
+                    typingTerminal.appendChild(line);
+                }
+                
+                const currentLine = typingTerminal.lastChild;
+                
+                if (charIndex < command.text.length) {
+                    // Add next character
+                    const char = document.createElement('span');
+                    char.textContent = command.text[charIndex];
+                    char.style.animationDelay = `${charIndex * 0.01}s`;
+                    currentLine.appendChild(char);
+                    charIndex++;
+                    setTimeout(typeNextChar, 30 + Math.random() * 50);
+                } else {
+                    // Move to next command
+                    charIndex = 0;
+                    commandIndex++;
+                    setTimeout(typeNextChar, command.delay);
+                }
+            }
+            
+            typeNextChar();
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Theme Toggle (Light/Dark)
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or use default dark theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            html.classList.add('light');
+            updateThemeIcons(true);
+        } else {
+            html.classList.remove('light');
+            updateThemeIcons(false);
+        }
+        
+        function updateThemeIcons(isLight) {
+            // Update desktop theme toggle icons
+            const sunIcon = themeToggle.querySelector('.fa-sun');
+            const moonIcon = themeToggle.querySelector('.fa-moon');
+            
+            if (isLight) {
+                sunIcon.classList.remove('opacity-0');
+                moonIcon.classList.add('opacity-0');
+            } else {
+                sunIcon.classList.add('opacity-0');
+                moonIcon.classList.remove('opacity-0');
+            }
+            
+            // Update mobile theme toggle icons
+            const mobileSunIcon = mobileThemeToggle.querySelector('.fa-sun');
+            const mobileMoonIcon = mobileThemeToggle.querySelector('.fa-moon');
+            
+            if (isLight) {
+                mobileSunIcon.classList.remove('opacity-0');
+                mobileMoonIcon.classList.add('opacity-0');
+            } else {
+                mobileSunIcon.classList.add('opacity-0');
+                mobileMoonIcon.classList.remove('opacity-0');
+            }
+        }
+        
+        function toggleTheme() {
+            const isCurrentlyLight = html.classList.contains('light');
+            
+            if (isCurrentlyLight) {
+                html.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+                updateThemeIcons(false);
+            } else {
+                html.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                updateThemeIcons(true);
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Contact Form Submission (Demo)
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && subject && message) {
+                alert('Message received. I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                alert('Please fill in all fields to send your message.');
+            }
+        });
+        
+        // Navigation active state
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all animations
+            initMatrixRain();
+            initParticleNetwork();
+            generateBinaryBackground();
+            terminalTypingEffect();
+            animateTerminalLines();
+            setEncryptionCellIndices();
+            createCyberCircuit();
+            createBinaryOverlay();
+            createDataStream();
+            createRadarBlips();
+            typingCodeAnimation();
+            
+            // Regenerate animations on resize
+            window.addEventListener('resize', () => {
+                generateBinaryBackground();
+                createCyberCircuit();
+                createBinaryOverlay();
+                createRadarBlips();
+            });
+            
+            // Refresh radar blips periodically
+            setInterval(createRadarBlips, 4000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e602c13367faf',t:'MTc1MzY0Mjc4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
