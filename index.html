@@ -1167,6 +1167,14 @@
         }
     </style>
 </head>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+   (function(){
+      emailjs.init("vArY8l_JQH8mmw2Yd"); // Replace with your real Public Key
+   })();
+</script>
+
 <body class="bg-terminal text-gray-300">
     <!-- Matrix Rain Animation -->
     <canvas id="matrix-rain"></canvas>
@@ -1983,23 +1991,23 @@ void aesDecrypt(uint8_t* ciphertext,
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="name" class="block text-gray-300 font-medium mb-2 font-mono">Name</label>
-                                    <input type="text" id="name" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                                    <input type="text" id="name" name="name" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
                                 </div>
                                 
                                 <div>
                                     <label for="email" class="block text-gray-300 font-medium mb-2 font-mono">Email</label>
-                                    <input type="email" id="email" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                                    <input type="email" id="email" name="email" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
                                 </div>
                             </div>
                             
                             <div>
                                 <label for="subject" class="block text-gray-300 font-medium mb-2 font-mono">Subject</label>
-                                <input type="text" id="subject" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
+                                <input type="text" id="subject" name="title" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
                             </div>
                             
                             <div>
                                 <label for="message" class="block text-gray-300 font-medium mb-2 font-mono">Message</label>
-                                <textarea id="message" rows="5" class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_"></textarea>
+                                <textarea id="message" name="message" rows="5" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_"></textarea>
                             </div>
                             
                             <div>
@@ -2634,25 +2642,6 @@ void aesDecrypt(uint8_t* ciphertext,
             });
         });
         
-        // Contact Form Submission (Demo)
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            if (name && email && subject && message) {
-                alert('Message received. I will get back to you soon.');
-                contactForm.reset();
-            } else {
-                alert('Please fill in all fields to send your message.');
-            }
-        });
-        
         // Navigation active state
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -2703,6 +2692,21 @@ void aesDecrypt(uint8_t* ciphertext,
             // Refresh radar blips periodically
             setInterval(createRadarBlips, 4000);
         });
+
+
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Debugging: print all form values
+    const formData = new FormData(this);
+    for (const [key, value] of formData.entries()) {
+        console.log(key, ":", value);
+    }
+
+    emailjs.sendForm("service_ndbgopb", "template_uhjy384", this)
+        .then(() => alert("✅ Message sent successfully!"))
+        .catch(error => alert("❌ Failed to send message: " + JSON.stringify(error)));
+});
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e7b87d79f2c07',t:'MTc1MzY0MzkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
