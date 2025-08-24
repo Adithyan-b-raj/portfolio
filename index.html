@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adithyan B Raj | Backend Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adithyan B Raj | Backend Developer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -29,7 +30,7 @@
             }
         }
     </script>
-    <style>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
         
@@ -531,6 +532,368 @@
             0% { background-color: rgba(4, 120, 87, 0.2); transform: rotateY(0deg); }
             50% { background-color: rgba(4, 120, 87, 0.8); transform: rotateY(180deg); }
             100% { background-color: rgba(4, 120, 87, 0.2); transform: rotateY(360deg); }
+        }
+
+
+        /* Walking Hacker Animation */
+        .walking-hacker {
+            position: fixed;
+            bottom: 20px;
+            left: -200px;
+            z-index: 5;
+            animation: walk-across 25s linear infinite;
+            pointer-events: none;
+            transform: scale(1.8);
+        }
+        
+        @keyframes walk-across {
+            0% { 
+                left: -200px; 
+                transform: scale(1.8) scaleX(1);
+            }
+            48% { 
+                left: calc(50% - 100px); 
+                transform: scale(1.8) scaleX(1);
+            }
+            52% { 
+                left: calc(50% - 100px); 
+                transform: scale(1.8) scaleX(-1);
+            }
+            100% { 
+                left: calc(100% + 200px); 
+                transform: scale(1.8) scaleX(-1);
+            }
+        }
+        
+        .hacker-body {
+            animation: walk-bounce 0.8s ease-in-out infinite;
+        }
+        
+        @keyframes walk-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .hacker-leg-left {
+            animation: leg-walk-left 0.8s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        .hacker-leg-right {
+            animation: leg-walk-right 0.8s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        @keyframes leg-walk-left {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        
+        @keyframes leg-walk-right {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+        
+        .hacker-arm-walk-left {
+            animation: arm-walk-left 0.8s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        .hacker-arm-walk-right {
+            animation: arm-walk-right 0.8s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        @keyframes arm-walk-left {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            75% { transform: rotate(20deg); }
+        }
+        
+        @keyframes arm-walk-right {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+        
+        .laptop-carry {
+            animation: laptop-sway 0.8s ease-in-out infinite;
+        }
+        
+        @keyframes laptop-sway {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-2px) rotate(2deg); }
+        }
+        
+        .hacker-hood {
+            animation: hood-sway 1.6s ease-in-out infinite;
+        }
+        
+        @keyframes hood-sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(1deg); }
+        }
+        
+        /* Code trail effect */
+        .code-trail {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00FF41;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            opacity: 0;
+            animation: code-trail-fade 2s ease-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes code-trail-fade {
+            0% { opacity: 0; transform: translateX(-50%) translateY(0px); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+        }
+        
+        html.light .code-trail {
+            color: #047857;
+        }
+        
+        /* Pause animation on hover */
+        .walking-hacker:hover {
+            animation-play-state: paused;
+        }
+        
+        .walking-hacker:hover .hacker-body,
+        .walking-hacker:hover .hacker-leg-left,
+        .walking-hacker:hover .hacker-leg-right,
+        .walking-hacker:hover .hacker-arm-walk-left,
+        .walking-hacker:hover .hacker-arm-walk-right,
+        .walking-hacker:hover .laptop-carry,
+        .walking-hacker:hover .hacker-hood {
+            animation-play-state: paused;
+        }
+        
+        /* Sitting Hacker with IP Display */
+        .sitting-hacker {
+            position: fixed;
+            top: 200px;
+            right: 30px;
+            z-index: 1;
+            opacity: 0.9;
+            pointer-events: none;
+            transform: scale(2.8);
+        }
+        
+        @media (max-width: 1024px) {
+            .sitting-hacker {
+                transform: scale(2.0);
+                top: 100px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sitting-hacker {
+                transform: scale(1.5);
+                top: 120px;
+                right: 15px;
+            }
+        }
+        
+        .sitting-hacker-body {
+            animation: sitting-sway 4s ease-in-out infinite;
+        }
+        
+        @keyframes sitting-sway {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-2px) rotate(0.5deg); }
+        }
+        
+        .sitting-arm-left {
+            animation: typing-left-arm 2s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        .sitting-arm-right {
+            animation: typing-right-arm 2s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        
+        @keyframes typing-left-arm {
+            0%, 100% { transform: rotate(15deg) translateY(0px); }
+            25% { transform: rotate(10deg) translateY(-1px); }
+            75% { transform: rotate(20deg) translateY(-1px); }
+        }
+        
+        @keyframes typing-right-arm {
+            0%, 100% { transform: rotate(-15deg) translateY(0px); }
+            25% { transform: rotate(-20deg) translateY(-1px); }
+            75% { transform: rotate(-10deg) translateY(-1px); }
+        }
+        
+        .sitting-laptop {
+            animation: laptop-screen-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes laptop-screen-glow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.7)); }
+        }
+        
+        .sitting-hood {
+            animation: sitting-hood-sway 3s ease-in-out infinite;
+        }
+        
+        @keyframes sitting-hood-sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(1deg); }
+        }
+        
+        .ip-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4px;
+            line-height: 1.2;
+            color: #00FF41;
+            text-shadow: 0 0 2px #00FF41;
+        }
+        
+        .ip-typing-line {
+            opacity: 0;
+            animation: ip-type-in 0.8s ease-out forwards;
+        }
+        
+        @keyframes ip-type-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .keyboard-key {
+            animation: key-flash 3s ease-in-out infinite;
+        }
+        
+        @keyframes key-flash {
+            0%, 95%, 100% { background-color: #374151; }
+            2% { background-color: #00FF41; }
+        }
+        
+        /* Light mode adjustments for sitting hacker */
+        html.light .sitting-laptop {
+            animation-name: laptop-screen-glow-light;
+        }
+        
+        @keyframes laptop-screen-glow-light {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(4, 120, 87, 0.4)); }
+            50% { filter: drop-shadow(0 0 15px rgba(4, 120, 87, 0.7)); }
+        }
+        
+        html.light .ip-display {
+            color: #047857;
+            text-shadow: 0 0 2px #047857;
+        }
+        
+        html.light .keyboard-key {
+            animation-name: key-flash-light;
+        }
+        
+        @keyframes key-flash-light {
+            0%, 95%, 100% { background-color: #374151; }
+            2% { background-color: #047857; }
+        }
+        
+        /* Hacker Animation Styles */
+        .hacker-figure {
+            animation: hacker-sway 3s ease-in-out infinite;
+        }
+        
+        @keyframes hacker-sway {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+        
+        .hacker-arm-left {
+            animation: typing-left 1.5s ease-in-out infinite;
+        }
+        
+        .hacker-arm-right {
+            animation: typing-right 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes typing-left {
+            0%, 100% { transform: rotate(12deg) translateY(0px); }
+            50% { transform: rotate(8deg) translateY(-2px); }
+        }
+        
+        @keyframes typing-right {
+            0%, 100% { transform: rotate(-12deg) translateY(0px); }
+            50% { transform: rotate(-8deg) translateY(-2px); }
+        }
+        
+        .laptop-container {
+            animation: laptop-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes laptop-glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.6)); }
+        }
+        
+        .key-flash {
+            animation: key-press 2s ease-in-out infinite;
+        }
+        
+        @keyframes key-press {
+            0%, 90%, 100% { background-color: #374151; transform: translateY(0px); }
+            5% { background-color: #00FF41; transform: translateY(1px); }
+        }
+        
+        .typing-line {
+            opacity: 0;
+            animation: type-in 0.5s ease-out forwards;
+        }
+        
+        @keyframes type-in {
+            0% { opacity: 0; transform: translateX(-10px); }
+            100% { opacity: 1; transform: translateX(0px); }
+        }
+        
+        .progress-bar {
+            width: 0;
+            animation: progress-fill 2s ease-out forwards;
+        }
+        
+        @keyframes progress-fill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .hacking-text {
+            animation: screen-flicker 4s ease-in-out infinite;
+        }
+        
+        @keyframes screen-flicker {
+            0%, 98%, 100% { opacity: 1; }
+            99% { opacity: 0.8; }
+        }
+        
+        /* Light mode adjustments for hacker animation */
+        html.light .laptop-container {
+            animation-name: laptop-glow-light;
+        }
+        
+        @keyframes laptop-glow-light {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(4, 120, 87, 0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(4, 120, 87, 0.6)); }
+        }
+        
+        html.light .key-flash {
+            animation-name: key-press-light;
+        }
+        
+        @keyframes key-press-light {
+            0%, 90%, 100% { background-color: #374151; transform: translateY(0px); }
+            5% { background-color: #047857; transform: translateY(1px); }
         }
         
         /* NEW ANIMATIONS */
@@ -1167,615 +1530,688 @@
         }
     </style>
 </head>
-
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
    (function(){
       emailjs.init("vArY8l_JQH8mmw2Yd"); // Replace with your real Public Key
    })();
 </script>
-
 <body class="bg-terminal text-gray-300">
-    <!-- Matrix Rain Animation -->
-    <canvas id="matrix-rain"></canvas>
-    
-    <!-- Particle Network -->
-    <div id="particle-network"></div>
-    
-    <!-- Binary Background -->
-    <div id="binary-background" class="fixed inset-0 overflow-hidden pointer-events-none"></div>
-    
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-terminal-light border-b border-gray-800 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-neon font-mono flex items-center">
-                <span class="mr-2">&lt;</span>
-                <span class="glitch" data-text="ABR">ABR</span>
-                <span class="ml-2">/&gt;</span>
-            </a>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/home</a>
-                <a href="#about" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/about</a>
-                <a href="#skills" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/skills</a>
-                <a href="#projects" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/projects</a>
-                <a href="#contact" class="nav-link text-gray-400 hover:text-neon transition duration-300">~/contact</a>
-                
-                <!-- Theme Toggle Button -->
-                <div id="theme-toggle" class="theme-toggle ml-4">
-                    <i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
-                    <i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
-                </div>
-            </div>
-            
-            <button id="mobile-menu-button" class="md:hidden text-gray-400 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-terminal-light border-t border-gray-800 absolute w-full">
-            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-                <a href="#home" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/home</a>
-                <a href="#about" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/about</a>
-                <a href="#skills" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/skills</a>
-                <a href="#projects" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/projects</a>
-                <a href="#contact" class="py-2 text-gray-400 hover:text-neon transition duration-300">~/contact</a>
-                
-                <!-- Mobile Theme Toggle -->
-                <div class="flex items-center">
-                    <span class="text-gray-400 mr-3">Toggle Theme:</span>
-                    <div id="mobile-theme-toggle" class="theme-toggle">
-                        <i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
-                        <i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
+<!-- Matrix Rain Animation -->
+<canvas id="matrix-rain"></canvas>
+<!-- Particle Network -->
+<div id="particle-network"></div>
+<!-- Binary Background -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none" id="binary-background"></div>
+<!-- Sitting Hacker with IP Display -->
+<div class="sitting-hacker">
+<div class="relative">
+<!-- Hacker Figure -->
+<div class="sitting-hacker-body">
+<!-- Head with Hood -->
+<div class="relative mb-1">
+<div class="w-10 h-10 bg-terminal-light border border-neon rounded-full mx-auto relative overflow-hidden">
+<!-- Glowing Eyes -->
+<div class="absolute top-3 left-2 w-1 h-1 bg-neon rounded-full animate-pulse"></div>
+<div class="absolute top-3 right-2 w-1 h-1 bg-neon rounded-full animate-pulse"></div>
+<!-- Mouth -->
+<div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-3 h-px bg-neon opacity-70"></div>
+</div>
+<!-- Hood -->
+<div class="absolute -top-2 -left-2 -right-2 h-8 bg-gray-900 border border-gray-700 rounded-t-full sitting-hood"></div>
+</div>
+<!-- Body/Torso -->
+<div class="w-12 h-16 bg-gray-900 border border-gray-700 mx-auto relative">
+<!-- Arms positioned for typing -->
+<div class="absolute -left-3 top-2 w-5 h-3 bg-gray-900 border border-gray-700 rounded-l-full sitting-arm-left"></div>
+<div class="absolute -right-3 top-2 w-5 h-3 bg-gray-900 border border-gray-700 rounded-r-full sitting-arm-right"></div>
+</div>
+<!-- Sitting position (no legs visible, sitting behind laptop) -->
+</div>
+<!-- Laptop with IP Display -->
+<div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 sitting-laptop">
+<div class="relative">
+<!-- Laptop Base -->
+<div class="w-20 h-12 bg-gray-800 border border-gray-600 rounded-sm relative">
+<!-- Keyboard -->
+<div class="absolute top-1 left-1 right-1 bottom-1 grid grid-cols-6 gap-px">
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.1s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.3s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.5s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.7s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.9s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 1.1s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.2s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.4s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.6s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 0.8s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 1.0s;"></div>
+<div class="bg-gray-700 rounded-sm keyboard-key" style="animation-delay: 1.2s;"></div>
+</div>
+</div>
+<!-- Laptop Screen -->
+<div class="absolute -top-16 left-0 w-20 h-14 bg-terminal border border-gray-600 rounded-sm transform -rotate-6 origin-bottom">
+<!-- Screen Content with IP Display -->
+<div class="p-1 h-full overflow-hidden">
+<div class="ip-display">
+<div class="ip-typing-line" style="animation-delay: 1s;">$ whoami</div>
+<div class="ip-typing-line" style="animation-delay: 2s;">visitor_detected</div>
+<div class="ip-typing-line" style="animation-delay: 3s;">$ ifconfig</div>
+<div class="ip-typing-line" style="animation-delay: 4s;">IP: <span id="visitor-ip">Detecting...</span></div>
+<div class="ip-typing-line" style="animation-delay: 5s;">Location: <span id="visitor-location">Tracing...</span></div>
+<div class="ip-typing-line" style="animation-delay: 6s;">Status: <span class="text-danger">MONITORED</span></div>
+<div class="ip-typing-line" style="animation-delay: 7s;">$ access_granted</div>
+</div>
+<!-- Progress bars -->
+<div class="absolute bottom-1 left-1 right-1">
+<div class="h-px bg-neon mb-px progress-bar" style="animation-delay: 4.5s;"></div>
+<div class="h-px bg-cyber progress-bar" style="animation-delay: 5.5s;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Walking Hacker Animation -->
+<div class="walking-hacker">
+<div class="relative">
+<!-- Code Trail -->
+<div class="code-trail">
+<div style="animation-delay: 0s;">01101000 01100001 01100011 01101011</div>
+</div>
+<div class="code-trail" style="top: -35px; animation-delay: 0.5s;">
+<div>void decrypt() { ... }</div>
+</div>
+<div class="code-trail" style="top: -50px; animation-delay: 1s;">
+<div>AES-128 cracked</div>
+</div>
+<!-- Hacker Figure -->
+<div class="hacker-body">
+<!-- Head with Hood -->
+<div class="relative mb-1">
+<div class="w-8 h-8 bg-terminal-light border border-neon rounded-full mx-auto relative overflow-hidden">
+<!-- Glowing Eyes -->
+<div class="absolute top-2 left-2 w-1 h-1 bg-neon rounded-full animate-pulse"></div>
+<div class="absolute top-2 right-2 w-1 h-1 bg-neon rounded-full animate-pulse"></div>
+<!-- Mouth -->
+<div class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-px bg-neon opacity-70"></div>
+</div>
+<!-- Hood -->
+<div class="absolute -top-1 -left-1 -right-1 h-6 bg-gray-900 border border-gray-700 rounded-t-full hacker-hood"></div>
+</div>
+<!-- Body/Torso -->
+<div class="w-10 h-12 bg-gray-900 border border-gray-700 mx-auto relative">
+<!-- Laptop carried in arms -->
+<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 laptop-carry">
+<div class="w-6 h-4 bg-gray-800 border border-gray-600 rounded-sm relative">
+<!-- Screen -->
+<div class="absolute -top-3 left-0 w-6 h-3 bg-terminal border border-gray-600 rounded-sm transform -rotate-12 origin-bottom">
+<div class="p-px">
+<div class="text-neon text-xs font-mono leading-none">
+<div style="font-size: 4px;">$hack</div>
+</div>
+</div>
+</div>
+<!-- Keyboard -->
+<div class="absolute top-px left-px right-px bottom-px bg-gray-700"></div>
+</div>
+</div>
+<!-- Arms -->
+<div class="absolute -left-2 top-1 w-4 h-2 bg-gray-900 border border-gray-700 rounded-l-full hacker-arm-walk-left"></div>
+<div class="absolute -right-2 top-1 w-4 h-2 bg-gray-900 border border-gray-700 rounded-r-full hacker-arm-walk-right"></div>
+</div>
+<!-- Legs -->
+<div class="flex justify-center space-x-1 mt-1">
+<div class="w-2 h-8 bg-gray-900 border border-gray-700 hacker-leg-left"></div>
+<div class="w-2 h-8 bg-gray-900 border border-gray-700 hacker-leg-right"></div>
+</div>
+<!-- Feet -->
+<div class="flex justify-center space-x-1">
+<div class="w-3 h-1 bg-gray-800 border border-gray-600"></div>
+<div class="w-3 h-1 bg-gray-800 border border-gray-600"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation -->
+<nav class="fixed w-full bg-terminal-light border-b border-gray-800 z-50">
+<div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<a class="text-2xl font-bold text-neon font-mono flex items-center" href="#">
+<span class="mr-2">&lt;</span>
+<span class="glitch" data-text="ABR">ABR</span>
+<span class="ml-2">/&gt;</span>
+</a>
+<div class="hidden md:flex space-x-8">
+<a class="nav-link text-gray-400 hover:text-neon transition duration-300" href="#home">~/home</a>
+<a class="nav-link text-gray-400 hover:text-neon transition duration-300" href="#about">~/about</a>
+<a class="nav-link text-gray-400 hover:text-neon transition duration-300" href="#skills">~/skills</a>
+<a class="nav-link text-gray-400 hover:text-neon transition duration-300" href="#projects">~/projects</a>
+<a class="nav-link text-gray-400 hover:text-neon transition duration-300" href="#contact">~/contact</a>
+<!-- Theme Toggle Button -->
+<div class="theme-toggle ml-4" id="theme-toggle">
+<i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
+<i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
+</div>
+</div>
+<button class="md:hidden text-gray-400 focus:outline-none" id="mobile-menu-button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Mobile Menu -->
+<div class="md:hidden hidden bg-terminal-light border-t border-gray-800 absolute w-full" id="mobile-menu">
+<div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+<a class="py-2 text-gray-400 hover:text-neon transition duration-300" href="#home">~/home</a>
+<a class="py-2 text-gray-400 hover:text-neon transition duration-300" href="#about">~/about</a>
+<a class="py-2 text-gray-400 hover:text-neon transition duration-300" href="#skills">~/skills</a>
+<a class="py-2 text-gray-400 hover:text-neon transition duration-300" href="#projects">~/projects</a>
+<a class="py-2 text-gray-400 hover:text-neon transition duration-300" href="#contact">~/contact</a>
+<!-- Mobile Theme Toggle -->
+<div class="flex items-center">
+<span class="text-gray-400 mr-3">Toggle Theme:</span>
+<div class="theme-toggle" id="mobile-theme-toggle">
+<i class="fas fa-sun text-yellow-300 absolute top-1.5 left-1.5 text-xs opacity-0"></i>
+<i class="fas fa-moon text-gray-400 absolute top-1.5 right-1.5 text-xs"></i>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="min-h-screen flex items-center pt-16 relative overflow-hidden" id="home">
+<!-- Cyber Circuit Animation -->
+<div class="cyber-circuit"></div>
+<div class="container mx-auto px-4 py-16 relative z-10 hero-content-wrapper">
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 text-center md:text-left">
+<div class="mb-4 inline-block px-4 py-1 border border-neon text-neon text-sm font-mono">
+<span class="mr-2">$</span>whoami
                     </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-16 relative overflow-hidden">
-        <!-- Cyber Circuit Animation -->
-        <div class="cyber-circuit"></div>
-        
-        <div class="container mx-auto px-4 py-16 relative z-10 hero-content-wrapper">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <div class="mb-4 inline-block px-4 py-1 border border-neon text-neon text-sm font-mono">
-                        <span class="mr-2">$</span>whoami
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-mono">
-                        <span class="text-white">I'm </span>
-                        <span class="text-neon terminal-text">Adithyan B Raj</span>
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-light mb-6 font-mono text-cyber">
-                        Backend Developer & Security Enthusiast
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-mono">
+<span class="text-white">I'm </span>
+<span class="text-neon terminal-text">Adithyan B Raj</span>
+</h1>
+<h2 class="text-2xl md:text-3xl lg:text-4xl font-light mb-6 font-mono text-cyber">
+                        Backend Developer &amp; Security Enthusiast
                     </h2>
-                    <p class="text-lg md:text-xl mb-8 text-gray-400 font-mono">
-                        <span class="console-typing" id="console-text"></span>
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#projects" class="cyber-button">
-                            <span class="mr-2">&lt;/&gt;</span> View My Work
+<p class="text-lg md:text-xl mb-8 text-gray-400 font-mono">
+<span class="console-typing" id="console-text"></span>
+</p>
+<div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+<a class="cyber-button" href="#projects">
+<span class="mr-2">&lt;/&gt;</span> View My Work
                         </a>
-                        <a href="#contact" class="cyber-button" style="--button-color: #0AFFFF;">
-                            <span class="mr-2">$</span> Contact Me
+<a class="cyber-button" href="#contact" style="--button-color: #0AFFFF;">
+<span class="mr-2">$</span> Contact Me
                         </a>
-                    </div>
+</div>
+</div>
+<div class="md:w-1/2 mt-12 md:mt-0 flex justify-center hero-image-container">
+<div class="relative w-64 h-64 md:w-80 md:h-80 border-2 border-neon p-1 binary-transition">
+<div class="absolute inset-0 bg-terminal-light flex items-center justify-center overflow-hidden">
+<!-- 3D Cube Animation -->
+<div class="cube-container">
+<div class="cube">
+<div class="cube-face">AES-128</div>
+<div class="cube-face">CRYPTO</div>
+<div class="cube-face">SECURE</div>
+<div class="cube-face">CIPHER</div>
+<div class="cube-face">BACKEND</div>
+<div class="cube-face">SYSTEMS</div>
+</div>
+</div>
+<!-- Animated Terminal Lines -->
+<div class="absolute bottom-0 left-0 right-0 p-2 text-xs text-neon font-mono">
+<div id="terminal-lines"></div>
+</div>
+</div>
+<!-- Binary Overlay -->
+<div class="binary-overlay">
+<!-- Will be filled with JS -->
+</div>
+<!-- Corner Decorations -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Stream Animation -->
+<div class="absolute bottom-16 left-0 right-0 h-2 overflow-hidden">
+<div id="data-stream-container"></div>
+</div>
+<!-- Stats Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-terminal-light border-t border-gray-800 py-4 status-bar">
+<div class="container mx-auto px-4">
+<div class="flex flex-wrap justify-between items-center text-sm font-mono">
+<div class="flex items-center mb-2 md:mb-0">
+<div class="w-3 h-3 rounded-full bg-neon mr-2 pulse-animation"></div>
+<span class="text-gray-400">Status: <span class="text-neon">Online</span></span>
+</div>
+<div class="flex items-center mb-2 md:mb-0">
+<i class="fas fa-code text-cyber mr-2"></i>
+<span class="text-gray-400">Languages: <span class="text-cyber">C/C++, Java, Python</span></span>
+</div>
+<div class="flex items-center mb-2 md:mb-0">
+<i class="fas fa-database text-warning mr-2"></i>
+<span class="text-gray-400">Database: <span class="text-warning">SQL</span></span>
+</div>
+<div class="flex items-center">
+<i class="fas fa-shield-alt text-danger mr-2"></i>
+<span class="text-gray-400">Security: <span class="text-danger">AES-128</span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-20 bg-terminal-light relative" id="about">
+<!-- Digital Noise Overlay -->
+<div class="digital-noise absolute inset-0">
+<div class="noise-overlay"></div>
+</div>
+<div class="container mx-auto px-4 relative z-10">
+<div class="text-center mb-16">
+<div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+<span class="mr-2">$</span>cat about.txt
                 </div>
-                <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center hero-image-container">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 border-2 border-neon p-1 binary-transition">
-                        <div class="absolute inset-0 bg-terminal-light flex items-center justify-center overflow-hidden">
-                            <!-- 3D Cube Animation -->
-                            <div class="cube-container">
-                                <div class="cube">
-                                    <div class="cube-face">AES-128</div>
-                                    <div class="cube-face">CRYPTO</div>
-                                    <div class="cube-face">SECURE</div>
-                                    <div class="cube-face">CIPHER</div>
-                                    <div class="cube-face">BACKEND</div>
-                                    <div class="cube-face">SYSTEMS</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Animated Terminal Lines -->
-                            <div class="absolute bottom-0 left-0 right-0 p-2 text-xs text-neon font-mono">
-                                <div id="terminal-lines"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Binary Overlay -->
-                        <div class="binary-overlay">
-                            <!-- Will be filled with JS -->
-                        </div>
-                        
-                        <!-- Corner Decorations -->
-                        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
-                        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
-                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
-                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Data Stream Animation -->
-        <div class="absolute bottom-16 left-0 right-0 h-2 overflow-hidden">
-            <div id="data-stream-container"></div>
-        </div>
-        
-        <!-- Stats Bar -->
-        <div class="absolute bottom-0 left-0 right-0 bg-terminal-light border-t border-gray-800 py-4 status-bar">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-wrap justify-between items-center text-sm font-mono">
-                    <div class="flex items-center mb-2 md:mb-0">
-                        <div class="w-3 h-3 rounded-full bg-neon mr-2 pulse-animation"></div>
-                        <span class="text-gray-400">Status: <span class="text-neon">Online</span></span>
-                    </div>
-                    <div class="flex items-center mb-2 md:mb-0">
-                        <i class="fas fa-code text-cyber mr-2"></i>
-                        <span class="text-gray-400">Languages: <span class="text-cyber">C/C++, Java, Python</span></span>
-                    </div>
-                    <div class="flex items-center mb-2 md:mb-0">
-                        <i class="fas fa-database text-warning mr-2"></i>
-                        <span class="text-gray-400">Database: <span class="text-warning">SQL</span></span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-shield-alt text-danger mr-2"></i>
-                        <span class="text-gray-400">Security: <span class="text-danger">AES-128</span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-terminal-light relative">
-        <!-- Digital Noise Overlay -->
-        <div class="digital-noise absolute inset-0">
-            <div class="noise-overlay"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
-                    <span class="mr-2">$</span>cat about.txt
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">About Me</h2>
-                <div class="w-24 h-1 bg-neon mx-auto"></div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="relative border-2 border-neon p-4 mx-auto max-w-md">
-                        <!-- Terminal Window -->
-                        <div class="bg-terminal rounded-none overflow-hidden">
-                            <!-- Terminal Header -->
-                            <div class="bg-gray-800 px-4 py-2 flex items-center">
-                                <div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
-                                <div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
-                                <div class="w-3 h-3 rounded-full bg-neon mr-2"></div>
-                                <div class="text-gray-400 text-xs font-mono ml-2">adithyan@hackermachine: ~/profile</div>
-                            </div>
-                            
-                            <!-- Terminal Content -->
-                            <div class="p-4 font-mono text-sm">
-                                <div id="typing-terminal"></div>
-                                <div class="terminal-cursor"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Corner Decorations -->
-                        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
-                        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
-                        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
-                        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 md:pl-10">
-                    <h3 class="text-2xl font-bold text-neon mb-6 font-mono">Backend Developer & Security Enthusiast</h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed font-mono">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">About Me</h2>
+<div class="w-24 h-1 bg-neon mx-auto"></div>
+</div>
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 mb-10 md:mb-0">
+<div class="relative border-2 border-neon p-4 mx-auto max-w-md">
+<!-- Terminal Window -->
+<div class="bg-terminal rounded-none overflow-hidden">
+<!-- Terminal Header -->
+<div class="bg-gray-800 px-4 py-2 flex items-center">
+<div class="w-3 h-3 rounded-full bg-danger mr-2"></div>
+<div class="w-3 h-3 rounded-full bg-warning mr-2"></div>
+<div class="w-3 h-3 rounded-full bg-neon mr-2"></div>
+<div class="text-gray-400 text-xs font-mono ml-2">adithyan@hackermachine: ~/profile</div>
+</div>
+<!-- Terminal Content -->
+<div class="p-4 font-mono text-sm">
+<div id="typing-terminal"></div>
+<div class="terminal-cursor"></div>
+</div>
+</div>
+<!-- Corner Decorations -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-neon"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-neon"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-neon"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-neon"></div>
+</div>
+</div>
+<div class="md:w-1/2 md:pl-10">
+<h3 class="text-2xl font-bold text-neon mb-6 font-mono">Backend Developer &amp; Security Enthusiast</h3>
+<p class="text-gray-400 mb-6 leading-relaxed font-mono">
                         I'm Adithyan B Raj, a backend developer with a strong foundation in systems programming 
                         and security. My expertise lies in developing robust backend solutions using C, C++, 
                         Java, and Python. I'm particularly interested in cryptography and secure system design.
                     </p>
-                    <p class="text-gray-400 mb-8 leading-relaxed font-mono">
+<p class="text-gray-400 mb-8 leading-relaxed font-mono">
                         My approach combines technical knowledge with practical implementation, allowing me to 
                         create systems that are not only functional but also secure. I've worked on projects 
                         involving encryption/decryption algorithms, with a focus on AES-128 bit implementation.
                     </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="border border-gray-800 p-4 hacker-card">
-                            <h4 class="text-cyber font-bold mb-2 font-mono">Languages</h4>
-                            <p class="text-gray-400 font-mono">C, C++, Java, Python</p>
-                        </div>
-                        <div class="border border-gray-800 p-4 hacker-card">
-                            <h4 class="text-cyber font-bold mb-2 font-mono">Database</h4>
-                            <p class="text-gray-400 font-mono">SQL, Database Management</p>
-                        </div>
-                        <div class="border border-gray-800 p-4 hacker-card">
-                            <h4 class="text-cyber font-bold mb-2 font-mono">Systems</h4>
-                            <p class="text-gray-400 font-mono">Operating Systems, System Design</p>
-                        </div>
-                        <div class="border border-gray-800 p-4 hacker-card">
-                            <h4 class="text-cyber font-bold mb-2 font-mono">Security</h4>
-                            <p class="text-gray-400 font-mono">Cryptography, AES Implementation</p>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="cyber-button">
-                        <span class="mr-2">$</span>Contact Me
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div class="border border-gray-800 p-4 hacker-card">
+<h4 class="text-cyber font-bold mb-2 font-mono">Languages</h4>
+<p class="text-gray-400 font-mono">C, C++, Java, Python</p>
+</div>
+<div class="border border-gray-800 p-4 hacker-card">
+<h4 class="text-cyber font-bold mb-2 font-mono">Database</h4>
+<p class="text-gray-400 font-mono">SQL, Database Management</p>
+</div>
+<div class="border border-gray-800 p-4 hacker-card">
+<h4 class="text-cyber font-bold mb-2 font-mono">Systems</h4>
+<p class="text-gray-400 font-mono">Operating Systems, System Design</p>
+</div>
+<div class="border border-gray-800 p-4 hacker-card">
+<h4 class="text-cyber font-bold mb-2 font-mono">Security</h4>
+<p class="text-gray-400 font-mono">Cryptography, AES Implementation</p>
+</div>
+</div>
+<a class="cyber-button" href="#contact">
+<span class="mr-2">$</span>Contact Me
                     </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="py-20 bg-terminal relative" id="skills">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+<span class="mr-2">$</span>ls -la skills/
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-terminal relative">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
-                    <span class="mr-2">$</span>ls -la skills/
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Technical Skills</h2>
-                <div class="w-24 h-1 bg-neon mx-auto"></div>
-            </div>
-            
-            <!-- Hexagon Grid Animation -->
-            <div class="hexagon-grid mb-12">
-                <div class="hexagon">
-                    <div class="hexagon-inner">C</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">C++</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">Java</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">Python</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">SQL</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">OS</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">DBMS</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">AES</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">DSA</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">OOP</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">Linux</div>
-                </div>
-                <div class="hexagon">
-                    <div class="hexagon-inner">Crypto</div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <!-- Programming Languages Skills -->
-                <div class="border border-gray-800 p-6">
-                    <h3 class="text-2xl font-bold text-neon mb-6 font-mono flex items-center">
-                        <i class="fas fa-code mr-3"></i>
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Technical Skills</h2>
+<div class="w-24 h-1 bg-neon mx-auto"></div>
+</div>
+<!-- Hexagon Grid Animation -->
+<div class="hexagon-grid mb-12">
+<div class="hexagon">
+<div class="hexagon-inner">C</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">C++</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">Java</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">Python</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">SQL</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">OS</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">DBMS</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">AES</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">DSA</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">OOP</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">Linux</div>
+</div>
+<div class="hexagon">
+<div class="hexagon-inner">Crypto</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Programming Languages Skills -->
+<div class="border border-gray-800 p-6">
+<h3 class="text-2xl font-bold text-neon mb-6 font-mono flex items-center">
+<i class="fas fa-code mr-3"></i>
                         Programming Languages
                     </h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">C</span>
-                                <span class="text-neon font-mono">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">C++</span>
-                                <span class="text-neon font-mono">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Java</span>
-                                <span class="text-neon font-mono">80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Python</span>
-                                <span class="text-neon font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Data Structures & Algorithms</span>
-                                <span class="text-neon font-mono">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Database Skills -->
-                <div class="border border-gray-800 p-6">
-                    <h3 class="text-2xl font-bold text-cyber mb-6 font-mono flex items-center">
-                        <i class="fas fa-database mr-3"></i>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">C</span>
+<span class="text-neon font-mono">90%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">C++</span>
+<span class="text-neon font-mono">85%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Java</span>
+<span class="text-neon font-mono">80%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Python</span>
+<span class="text-neon font-mono">75%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Data Structures &amp; Algorithms</span>
+<span class="text-neon font-mono">85%</span>
+</div>
+<div class="skill-bar">
+<div class="skill-progress" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Database Skills -->
+<div class="border border-gray-800 p-6">
+<h3 class="text-2xl font-bold text-cyber mb-6 font-mono flex items-center">
+<i class="fas fa-database mr-3"></i>
                         Database Systems
                     </h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">SQL</span>
-                                <span class="text-cyber font-mono">80%</span>
-                            </div>
-                            <div class="skill-bar bg-cyber bg-opacity-20">
-                                <div class="skill-progress bg-cyber" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Database Design</span>
-                                <span class="text-cyber font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar bg-cyber bg-opacity-20">
-                                <div class="skill-progress bg-cyber" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Query Optimization</span>
-                                <span class="text-cyber font-mono">70%</span>
-                            </div>
-                            <div class="skill-bar bg-cyber bg-opacity-20">
-                                <div class="skill-progress bg-cyber" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Database Management</span>
-                                <span class="text-cyber font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar bg-cyber bg-opacity-20">
-                                <div class="skill-progress bg-cyber" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Data Modeling</span>
-                                <span class="text-cyber font-mono">70%</span>
-                            </div>
-                            <div class="skill-bar bg-cyber bg-opacity-20">
-                                <div class="skill-progress bg-cyber" style="width: 70%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- System Skills -->
-                <div class="border border-gray-800 p-6">
-                    <h3 class="text-2xl font-bold text-warning mb-6 font-mono flex items-center">
-                        <i class="fas fa-laptop-code mr-3"></i>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">SQL</span>
+<span class="text-cyber font-mono">80%</span>
+</div>
+<div class="skill-bar bg-cyber bg-opacity-20">
+<div class="skill-progress bg-cyber" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Database Design</span>
+<span class="text-cyber font-mono">75%</span>
+</div>
+<div class="skill-bar bg-cyber bg-opacity-20">
+<div class="skill-progress bg-cyber" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Query Optimization</span>
+<span class="text-cyber font-mono">70%</span>
+</div>
+<div class="skill-bar bg-cyber bg-opacity-20">
+<div class="skill-progress bg-cyber" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Database Management</span>
+<span class="text-cyber font-mono">75%</span>
+</div>
+<div class="skill-bar bg-cyber bg-opacity-20">
+<div class="skill-progress bg-cyber" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Data Modeling</span>
+<span class="text-cyber font-mono">70%</span>
+</div>
+<div class="skill-bar bg-cyber bg-opacity-20">
+<div class="skill-progress bg-cyber" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- System Skills -->
+<div class="border border-gray-800 p-6">
+<h3 class="text-2xl font-bold text-warning mb-6 font-mono flex items-center">
+<i class="fas fa-laptop-code mr-3"></i>
                         System Development
                     </h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Operating Systems</span>
-                                <span class="text-warning font-mono">85%</span>
-                            </div>
-                            <div class="skill-bar bg-warning bg-opacity-20">
-                                <div class="skill-progress bg-warning" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">System Design</span>
-                                <span class="text-warning font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar bg-warning bg-opacity-20">
-                                <div class="skill-progress bg-warning" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Backend Architecture</span>
-                                <span class="text-warning font-mono">70%</span>
-                            </div>
-                            <div class="skill-bar bg-warning bg-opacity-20">
-                                <div class="skill-progress bg-warning" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Memory Management</span>
-                                <span class="text-warning font-mono">80%</span>
-                            </div>
-                            <div class="skill-bar bg-warning bg-opacity-20">
-                                <div class="skill-progress bg-warning" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Process Management</span>
-                                <span class="text-warning font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar bg-warning bg-opacity-20">
-                                <div class="skill-progress bg-warning" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Security Skills -->
-                <div class="border border-gray-800 p-6">
-                    <h3 class="text-2xl font-bold text-danger mb-6 font-mono flex items-center">
-                        <i class="fas fa-shield-alt mr-3"></i>
-                        Security & Cryptography
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Operating Systems</span>
+<span class="text-warning font-mono">85%</span>
+</div>
+<div class="skill-bar bg-warning bg-opacity-20">
+<div class="skill-progress bg-warning" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">System Design</span>
+<span class="text-warning font-mono">75%</span>
+</div>
+<div class="skill-bar bg-warning bg-opacity-20">
+<div class="skill-progress bg-warning" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Backend Architecture</span>
+<span class="text-warning font-mono">70%</span>
+</div>
+<div class="skill-bar bg-warning bg-opacity-20">
+<div class="skill-progress bg-warning" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Memory Management</span>
+<span class="text-warning font-mono">80%</span>
+</div>
+<div class="skill-bar bg-warning bg-opacity-20">
+<div class="skill-progress bg-warning" style="width: 80%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Process Management</span>
+<span class="text-warning font-mono">75%</span>
+</div>
+<div class="skill-bar bg-warning bg-opacity-20">
+<div class="skill-progress bg-warning" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Skills -->
+<div class="border border-gray-800 p-6">
+<h3 class="text-2xl font-bold text-danger mb-6 font-mono flex items-center">
+<i class="fas fa-shield-alt mr-3"></i>
+                        Security &amp; Cryptography
                     </h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">AES Encryption/Decryption</span>
-                                <span class="text-danger font-mono">90%</span>
-                            </div>
-                            <div class="skill-bar bg-danger bg-opacity-20">
-                                <div class="skill-progress bg-danger" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Cryptographic Algorithms</span>
-                                <span class="text-danger font-mono">85%</span>
-                            </div>
-                            <div class="skill-bar bg-danger bg-opacity-20">
-                                <div class="skill-progress bg-danger" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Secure Coding Practices</span>
-                                <span class="text-danger font-mono">75%</span>
-                            </div>
-                            <div class="skill-bar bg-danger bg-opacity-20">
-                                <div class="skill-progress bg-danger" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Authentication Systems</span>
-                                <span class="text-danger font-mono">70%</span>
-                            </div>
-                            <div class="skill-bar bg-danger bg-opacity-20">
-                                <div class="skill-progress bg-danger" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-gray-300 font-mono">Data Protection</span>
-                                <span class="text-danger font-mono">80%</span>
-                            </div>
-                            <div class="skill-bar bg-danger bg-opacity-20">
-                                <div class="skill-progress bg-danger" style="width: 80%"></div>
-                            </div>
-                        </div>
-                    </div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">AES Encryption/Decryption</span>
+<span class="text-danger font-mono">90%</span>
+</div>
+<div class="skill-bar bg-danger bg-opacity-20">
+<div class="skill-progress bg-danger" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Cryptographic Algorithms</span>
+<span class="text-danger font-mono">85%</span>
+</div>
+<div class="skill-bar bg-danger bg-opacity-20">
+<div class="skill-progress bg-danger" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Secure Coding Practices</span>
+<span class="text-danger font-mono">75%</span>
+</div>
+<div class="skill-bar bg-danger bg-opacity-20">
+<div class="skill-progress bg-danger" style="width: 75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Authentication Systems</span>
+<span class="text-danger font-mono">70%</span>
+</div>
+<div class="skill-bar bg-danger bg-opacity-20">
+<div class="skill-progress bg-danger" style="width: 70%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="text-gray-300 font-mono">Data Protection</span>
+<span class="text-danger font-mono">80%</span>
+</div>
+<div class="skill-bar bg-danger bg-opacity-20">
+<div class="skill-progress bg-danger" style="width: 80%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Radar Animation -->
+<div class="mt-12 border border-gray-800 p-6">
+<h3 class="text-xl font-bold text-white mb-6 font-mono text-center">Skills Radar</h3>
+<div class="radar-container mb-8">
+<div class="radar-scan"></div>
+<div class="radar-ring" style="width: 40%; height: 40%;"></div>
+<div class="radar-ring" style="width: 70%; height: 70%;"></div>
+<div class="radar-ring" style="width: 100%; height: 100%;"></div>
+<!-- Radar blips will be added with JS -->
+</div>
+<div class="flex flex-wrap gap-3 justify-center">
+<span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Algorithms</span>
+<span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Data Structures</span>
+<span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">OOP</span>
+<span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">DBMS</span>
+<span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Linux</span>
+<span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">System Calls</span>
+<span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">AES-128</span>
+<span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Encryption</span>
+<span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Multithreading</span>
+<span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">SQL Queries</span>
+<span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Memory Management</span>
+<span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Decryption</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-20 bg-terminal-light relative" id="projects">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+<span class="mr-2">$</span>ls -la projects/
                 </div>
-            </div>
-            
-            <!-- Radar Animation -->
-            <div class="mt-12 border border-gray-800 p-6">
-                <h3 class="text-xl font-bold text-white mb-6 font-mono text-center">Skills Radar</h3>
-                
-                <div class="radar-container mb-8">
-                    <div class="radar-scan"></div>
-                    <div class="radar-ring" style="width: 40%; height: 40%;"></div>
-                    <div class="radar-ring" style="width: 70%; height: 70%;"></div>
-                    <div class="radar-ring" style="width: 100%; height: 100%;"></div>
-                    <!-- Radar blips will be added with JS -->
-                </div>
-                
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Algorithms</span>
-                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Data Structures</span>
-                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">OOP</span>
-                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">DBMS</span>
-                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Linux</span>
-                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">System Calls</span>
-                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">AES-128</span>
-                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Encryption</span>
-                    <span class="bg-terminal-light border border-neon text-neon px-3 py-1 font-mono">Multithreading</span>
-                    <span class="bg-terminal-light border border-cyber text-cyber px-3 py-1 font-mono">SQL Queries</span>
-                    <span class="bg-terminal-light border border-warning text-warning px-3 py-1 font-mono">Memory Management</span>
-                    <span class="bg-terminal-light border border-danger text-danger px-3 py-1 font-mono">Decryption</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-terminal-light relative">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
-                    <span class="mr-2">$</span>ls -la projects/
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Featured Projects</h2>
-                <div class="w-24 h-1 bg-neon mx-auto"></div>
-            </div>
-            
-            <!-- Loading Bar Animation -->
-            <div class="loading-bar-container mb-12">
-                <div class="loading-bar"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <!-- Main Project -->
-                <div class="project-card bg-terminal rounded-none overflow-hidden mb-12">
-                    <div class="h-64 bg-terminal flex items-center justify-center relative overflow-hidden">
-                        <!-- Project Visual -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <!-- Cyber Lock Animation -->
-                            <div class="cyber-lock mb-4">
-                                <div class="lock-shackle"></div>
-                                <div class="lock-body">
-                                    <div class="lock-keyhole"></div>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-neon font-mono text-lg mt-4">AES-128 Decryption Tool</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Code Overlay -->
-                        <div class="absolute inset-0 bg-terminal bg-opacity-80 opacity-20 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center p-4">
-                            <pre class="text-neon text-xs overflow-hidden font-mono">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Featured Projects</h2>
+<div class="w-24 h-1 bg-neon mx-auto"></div>
+</div>
+<!-- Loading Bar Animation -->
+<div class="loading-bar-container mb-12">
+<div class="loading-bar"></div>
+</div>
+<div class="max-w-4xl mx-auto">
+<!-- Main Project -->
+<div class="project-card bg-terminal rounded-none overflow-hidden mb-12">
+<div class="h-64 bg-terminal flex items-center justify-center relative overflow-hidden">
+<!-- Project Visual -->
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Cyber Lock Animation -->
+<div class="cyber-lock mb-4">
+<div class="lock-shackle"></div>
+<div class="lock-body">
+<div class="lock-keyhole"></div>
+</div>
+</div>
+<div class="text-center">
+<div class="text-neon font-mono text-lg mt-4">AES-128 Decryption Tool</div>
+</div>
+</div>
+<!-- Code Overlay -->
+<div class="absolute inset-0 bg-terminal bg-opacity-80 opacity-20 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center p-4">
+<pre class="text-neon text-xs overflow-hidden font-mono">
 <code>// AES-128 Decryption Implementation
 void aesDecrypt(uint8_t* ciphertext, 
                 uint8_t* key, 
@@ -1789,7 +2225,7 @@ void aesDecrypt(uint8_t* ciphertext,
     addRoundKey(ciphertext, roundKeys[10]);
     
     // Main rounds
-    for (int round = 9; round > 0; round--) {
+    for (int round = 9; round &gt; 0; round--) {
         invShiftRows(ciphertext);
         invSubBytes(ciphertext);
         addRoundKey(ciphertext, roundKeys[round]);
@@ -1805,272 +2241,410 @@ void aesDecrypt(uint8_t* ciphertext,
     memcpy(plaintext, ciphertext, 16);
 }</code>
                             </pre>
-                        </div>
-                    </div>
-                    <div class="p-6 border-t border-gray-800">
-                        <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-xl font-bold text-neon font-mono">AES-128 Decryption Tool</h3>
-                            <div class="flex space-x-2">
-                                <span class="w-3 h-3 rounded-full bg-neon"></span>
-                                <span class="w-3 h-3 rounded-full bg-danger"></span>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 mb-4 font-mono text-sm">
+</div>
+</div>
+<div class="p-6 border-t border-gray-800">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-xl font-bold text-neon font-mono">AES-128 Decryption Tool</h3>
+<div class="flex space-x-2">
+<span class="w-3 h-3 rounded-full bg-neon"></span>
+<span class="w-3 h-3 rounded-full bg-danger"></span>
+</div>
+</div>
+<p class="text-gray-400 mb-4 font-mono text-sm">
                             A software tool that decrypts 128-bit AES encrypted content. This project implements the full AES decryption algorithm including key expansion, inverse substitution, row shifting, and column mixing operations.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C</span>
-                            <span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C++</span>
-                            <span class="bg-terminal border border-cyber text-cyber text-xs px-2 py-1 font-mono">Cryptography</span>
-                            <span class="bg-terminal border border-danger text-danger text-xs px-2 py-1 font-mono">AES-128</span>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-white font-bold mb-2 font-mono">Key Features:</h4>
-                            <ul class="list-disc list-inside text-gray-400 font-mono text-sm space-y-1">
-                                <li>Full implementation of AES-128 decryption algorithm</li>
-                                <li>Optimized for performance with minimal memory footprint</li>
-                                <li>Support for various key formats and padding schemes</li>
-                                <li>Command-line interface for batch processing</li>
-                                <li>Detailed logging and error handling</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <h4 class="text-white font-bold mb-2 font-mono">Technical Challenges:</h4>
-                            <p class="text-gray-400 font-mono text-sm">
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C</span>
+<span class="bg-terminal border border-neon text-neon text-xs px-2 py-1 font-mono">C++</span>
+<span class="bg-terminal border border-cyber text-cyber text-xs px-2 py-1 font-mono">Cryptography</span>
+<span class="bg-terminal border border-danger text-danger text-xs px-2 py-1 font-mono">AES-128</span>
+</div>
+<div class="mb-6">
+<h4 class="text-white font-bold mb-2 font-mono">Key Features:</h4>
+<ul class="list-disc list-inside text-gray-400 font-mono text-sm space-y-1">
+<li>Full implementation of AES-128 decryption algorithm</li>
+<li>Optimized for performance with minimal memory footprint</li>
+<li>Support for various key formats and padding schemes</li>
+<li>Command-line interface for batch processing</li>
+<li>Detailed logging and error handling</li>
+</ul>
+</div>
+<div class="mb-6">
+<h4 class="text-white font-bold mb-2 font-mono">Technical Challenges:</h4>
+<p class="text-gray-400 font-mono text-sm">
                                 The main challenge was implementing the complex mathematical operations of AES, particularly the inverse mix columns transformation and key schedule. Optimizing the algorithm for speed while ensuring correctness required careful testing and validation against known test vectors.
                             </p>
-                        </div>
-                        
-                        <div class="flex justify-between items-center">
-                            <button class="cyber-button text-sm">
+</div>
+<div class="flex justify-between items-center">
+<button class="cyber-button text-sm">
                                 View Project Details
-                                <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </button>
-                            <a href="#" class="text-gray-400 hover:text-neon">
-                                <i class="fab fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
+                                <svg class="w-4 h-4 ml-2 inline" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<a class="text-gray-400 hover:text-neon" href="#">
+<i class="fab fa-github text-xl"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- Future Projects Section -->
+<div class="border border-gray-800 p-6">
+<h3 class="text-xl font-bold text-white mb-6 font-mono">Upcoming Projects</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="bg-terminal p-3 border border-cyber mr-4">
+<i class="fas fa-database text-cyber"></i>
+</div>
+<div>
+<h4 class="text-gray-300 font-medium font-mono">Advanced Database Management System</h4>
+<p class="text-gray-400 font-mono text-sm mt-1">A custom DBMS implementation with focus on security and performance.</p>
+<!-- Progress Bar -->
+<div class="mt-2 w-full bg-terminal-light h-1">
+<div class="bg-cyber h-full" style="width: 65%"></div>
+</div>
+<p class="text-xs text-cyber mt-1">65% Complete</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="bg-terminal p-3 border border-warning mr-4">
+<i class="fas fa-laptop-code text-warning"></i>
+</div>
+<div>
+<h4 class="text-gray-300 font-medium font-mono">Lightweight Operating System Kernel</h4>
+<p class="text-gray-400 font-mono text-sm mt-1">A minimal OS kernel implementation focusing on core concepts and memory management.</p>
+<!-- Progress Bar -->
+<div class="mt-2 w-full bg-terminal-light h-1">
+<div class="bg-warning h-full" style="width: 40%"></div>
+</div>
+<p class="text-xs text-warning mt-1">40% Complete</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="bg-terminal p-3 border border-danger mr-4">
+<i class="fas fa-shield-alt text-danger"></i>
+</div>
+<div>
+<h4 class="text-gray-300 font-medium font-mono">Secure File System</h4>
+<p class="text-gray-400 font-mono text-sm mt-1">A file system with built-in encryption and access control mechanisms.</p>
+<!-- Progress Bar -->
+<div class="mt-2 w-full bg-terminal-light h-1">
+<div class="bg-danger h-full" style="width: 25%"></div>
+</div>
+<p class="text-xs text-danger mt-1">25% Complete</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-20 bg-terminal relative" id="contact">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
+<span class="mr-2">$</span>ssh user@contact
                 </div>
-                
-                <!-- Future Projects Section -->
-                <div class="border border-gray-800 p-6">
-                    <h3 class="text-xl font-bold text-white mb-6 font-mono">Upcoming Projects</h3>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="bg-terminal p-3 border border-cyber mr-4">
-                                <i class="fas fa-database text-cyber"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-300 font-medium font-mono">Advanced Database Management System</h4>
-                                <p class="text-gray-400 font-mono text-sm mt-1">A custom DBMS implementation with focus on security and performance.</p>
-                                <!-- Progress Bar -->
-                                <div class="mt-2 w-full bg-terminal-light h-1">
-                                    <div class="bg-cyber h-full" style="width: 65%"></div>
-                                </div>
-                                <p class="text-xs text-cyber mt-1">65% Complete</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-terminal p-3 border border-warning mr-4">
-                                <i class="fas fa-laptop-code text-warning"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-300 font-medium font-mono">Lightweight Operating System Kernel</h4>
-                                <p class="text-gray-400 font-mono text-sm mt-1">A minimal OS kernel implementation focusing on core concepts and memory management.</p>
-                                <!-- Progress Bar -->
-                                <div class="mt-2 w-full bg-terminal-light h-1">
-                                    <div class="bg-warning h-full" style="width: 40%"></div>
-                                </div>
-                                <p class="text-xs text-warning mt-1">40% Complete</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="bg-terminal p-3 border border-danger mr-4">
-                                <i class="fas fa-shield-alt text-danger"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-gray-300 font-medium font-mono">Secure File System</h4>
-                                <p class="text-gray-400 font-mono text-sm mt-1">A file system with built-in encryption and access control mechanisms.</p>
-                                <!-- Progress Bar -->
-                                <div class="mt-2 w-full bg-terminal-light h-1">
-                                    <div class="bg-danger h-full" style="width: 25%"></div>
-                                </div>
-                                <p class="text-xs text-danger mt-1">25% Complete</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-terminal relative">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-1 border border-neon text-neon text-sm font-mono mb-4">
-                    <span class="mr-2">$</span>ssh user@contact
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Get In Touch</h2>
-                <div class="w-24 h-1 bg-neon mx-auto"></div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row gap-10 max-w-4xl mx-auto">
-                <div class="md:w-2/5">
-                    <div class="bg-terminal-light border border-gray-800 p-6 h-full">
-                        <h3 class="text-xl font-bold text-white mb-6 font-mono">Contact Information</h3>
-                        
-                        <div class="space-y-6">
-                            <!-- Email - Redesigned with more space -->
-                            <div class="contact-info-item">
-                                <div class="contact-info-icon border-neon">
-                                    <i class="fas fa-envelope text-neon text-xl"></i>
-                                </div>
-                                <div class="contact-info-content">
-                                    <div class="contact-info-label text-gray-300 font-mono">Email</div>
-                                    <div class="contact-info-value text-neon break-all">adithyanbraj@gmail.com</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Website - Redesigned with more space -->
-                            <div class="contact-info-item">
-                              <div class="contact-info-icon border-cyber">
-                                <i class="fas fa-globe text-cyber text-xl"></i>
-                              </div>
-                              <div class="contact-info-content">
-                                <div class="contact-info-label text-gray-300 font-mono">Website</div>
-                                <div class="contact-info-value font-mono">
-                                  <a href="https://github.com/Adithyan-b-raj" 
-                                     target="_blank" 
-                                     rel="noopener noreferrer"
-                                     class="text-cyber break-all hover:underline">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4 font-mono">Get In Touch</h2>
+<div class="w-24 h-1 bg-neon mx-auto"></div>
+</div>
+<div class="flex flex-col md:flex-row gap-10 max-w-4xl mx-auto">
+<div class="md:w-2/5">
+<div class="bg-terminal-light border border-gray-800 p-6 h-full">
+<h3 class="text-xl font-bold text-white mb-6 font-mono">Contact Information</h3>
+<div class="space-y-6">
+<!-- Email - Redesigned with more space -->
+<div class="contact-info-item">
+<div class="contact-info-icon border-neon">
+<i class="fas fa-envelope text-neon text-xl"></i>
+</div>
+<div class="contact-info-content">
+<div class="contact-info-label text-gray-300 font-mono">Email</div>
+<div class="contact-info-value text-neon break-all">adithyanbraj@gmail.com</div>
+</div>
+</div>
+<!-- Website - Redesigned with more space -->
+<div class="contact-info-item">
+<div class="contact-info-icon border-cyber">
+<i class="fas fa-globe text-cyber text-xl"></i>
+</div>
+<div class="contact-info-content">
+<div class="contact-info-label text-gray-300 font-mono">Website</div>
+<div class="contact-info-value font-mono">
+<a class="text-cyber break-all hover:underline" href="https://github.com/Adithyan-b-raj" rel="noopener noreferrer" target="_blank">
                                     https://github.com/Adithyan-b-raj
                                   </a>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            
-                            <!-- PGP Key - Redesigned with more space -->
-                            <div class="contact-info-item">
-                                <div class="contact-info-icon border-warning">
-                                    <i class="fas fa-key text-warning text-xl"></i>
-                                </div>
-                                <div class="contact-info-content">
-                                    <div class="contact-info-label text-gray-300 font-mono">PGP Key</div>
-                                    <div class="contact-info-value text-warning break-all">0xAB42DE...F7</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="text-gray-300 font-medium mb-4 font-mono">Connect</h4>
-                            <div class="flex space-x-4">
-                              <a href="https://github.com/Adithyan-b-raj" 
-                                  target="_blank" rel="noopener noreferrer"
-                                  class="bg-terminal p-3 border border-neon text-neon hover:bg-neon hover:bg-opacity-10 transition">
-                                <i class="fab fa-github"></i>
-                              </a>
-                                <a href="#" class="bg-terminal p-3 border border-cyber text-cyber hover:bg-cyber hover:bg-opacity-10 transition">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="bg-terminal p-3 border border-warning text-warning hover:bg-warning hover:bg-opacity-10 transition">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://stackoverflow.com/users/27022612/adithyan-b-raj" 
-                                    target="_blank" rel="noopener noreferrer"
-                                    class="bg-terminal p-3 border border-danger text-danger hover:bg-danger hover:bg-opacity-10 transition">
-                                  <i class="fab fa-stack-overflow"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-3/5">
-                    <div class="bg-terminal-light border border-gray-800 p-6">
-                        <h3 class="text-xl font-bold text-white mb-6 font-mono">Send Message</h3>
-                        
-                        <form id="contact-form" class="space-y-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-gray-300 font-medium mb-2 font-mono">Name</label>
-                                    <input type="text" id="name" name="name" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
-                                </div>
-                                
-                                <div>
-                                    <label for="email" class="block text-gray-300 font-medium mb-2 font-mono">Email</label>
-                                    <input type="email" id="email" name="email" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label for="subject" class="block text-gray-300 font-medium mb-2 font-mono">Subject</label>
-                                <input type="text" id="subject" name="title" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_">
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-gray-300 font-medium mb-2 font-mono">Message</label>
-                                <textarea id="message" name="message" rows="5" required class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" placeholder="_"></textarea>
-                            </div>
-                            
-                            <div>
-                                <button type="submit" class="cyber-button w-full">
-                                    <span class="mr-2">$</span>send --message
+</div>
+</div>
+</div>
+<!-- PGP Key - Redesigned with more space -->
+<div class="contact-info-item">
+<div class="contact-info-icon border-warning">
+<i class="fas fa-key text-warning text-xl"></i>
+</div>
+<div class="contact-info-content">
+<div class="contact-info-label text-gray-300 font-mono">PGP Key</div>
+<div class="contact-info-value text-warning break-all">0xAB42DE...F7</div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="text-gray-300 font-medium mb-4 font-mono">Connect</h4>
+<div class="flex space-x-4">
+<a class="bg-terminal p-3 border border-neon text-neon hover:bg-neon hover:bg-opacity-10 transition" href="https://github.com/Adithyan-b-raj" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-github"></i>
+</a>
+<a class="bg-terminal p-3 border border-cyber text-cyber hover:bg-cyber hover:bg-opacity-10 transition" href="#">
+<i class="fab fa-linkedin-in"></i>
+</a>
+<a class="bg-terminal p-3 border border-warning text-warning hover:bg-warning hover:bg-opacity-10 transition" href="#">
+<i class="fab fa-twitter"></i>
+</a>
+<a class="bg-terminal p-3 border border-danger text-danger hover:bg-danger hover:bg-opacity-10 transition" href="https://stackoverflow.com/users/27022612/adithyan-b-raj" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-stack-overflow"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-3/5">
+<div class="bg-terminal-light border border-gray-800 p-6">
+<h3 class="text-xl font-bold text-white mb-6 font-mono">Send Message</h3>
+<form class="space-y-6" id="contact-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-gray-300 font-medium mb-2 font-mono" for="name">Name</label>
+<input class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" id="name" name="name" placeholder="_" required="" type="text"/>
+</div>
+<div>
+<label class="block text-gray-300 font-medium mb-2 font-mono" for="email">Email</label>
+<input class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" id="email" name="email" placeholder="_" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-gray-300 font-medium mb-2 font-mono" for="subject">Subject</label>
+<input class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" id="subject" name="title" placeholder="_" required="" type="text"/>
+</div>
+<div>
+<label class="block text-gray-300 font-medium mb-2 font-mono" for="message">Message</label>
+<textarea class="w-full bg-terminal border border-gray-800 focus:border-neon text-white px-4 py-3 font-mono" id="message" name="message" placeholder="_" required="" rows="5"></textarea>
+</div>
+<div>
+<button class="cyber-button w-full" type="submit">
+<span class="mr-2">$</span>send --message
                                 </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-terminal-light border-t border-gray-800 py-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-neon font-mono flex items-center">
-                        <span class="mr-2">&lt;</span>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-terminal-light border-t border-gray-800 py-8">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<a class="text-2xl font-bold text-neon font-mono flex items-center" href="#">
+<span class="mr-2">&lt;</span>
                         ABR
                         <span class="ml-2">/&gt;</span>
-                    </a>
-                    <p class="mt-2 text-gray-500 font-mono">Backend Developer & Security Enthusiast</p>
-                </div>
-                
-                <div class="flex flex-wrap justify-center gap-6 font-mono">
-                    <a href="#home" class="text-gray-400 hover:text-neon transition">~/home</a>
-                    <a href="#about" class="text-gray-400 hover:text-neon transition">~/about</a>
-                    <a href="#skills" class="text-gray-400 hover:text-neon transition">~/skills</a>
-                    <a href="#projects" class="text-gray-400 hover:text-neon transition">~/projects</a>
-                    <a href="#contact" class="text-gray-400 hover:text-neon transition">~/contact</a>
-                </div>
-            </div>
+</a>
+<p class="mt-2 text-gray-500 font-mono">Backend Developer &amp; Security Enthusiast</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-mono">
+<a class="text-gray-400 hover:text-neon transition" href="#home">~/home</a>
+<a class="text-gray-400 hover:text-neon transition" href="#about">~/about</a>
+<a class="text-gray-400 hover:text-neon transition" href="#skills">~/skills</a>
+<a class="text-gray-400 hover:text-neon transition" href="#projects">~/projects</a>
+<a class="text-gray-400 hover:text-neon transition" href="#contact">~/contact</a>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 font-mono">
+<p>© 2023 | <span class="text-neon">Adithyan B Raj</span> | All rights reserved.</p>
+<p class="mt-2 text-xs">This site is protected by AES-128 encryption.</p>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button class="fixed bottom-6 right-6 bg-neon text-terminal w-12 h-12 flex items-center justify-center border-2 border-neon opacity-0 invisible transition-all duration-300" id="back-to-top">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<script>
+
+
+        // IP Detection Function
+        async function detectVisitorIP() {
+            const ipElement = document.getElementById('visitor-ip');
+            const locationElement = document.getElementById('visitor-location');
             
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 font-mono">
-                <p>&copy; 2023 | <span class="text-neon">Adithyan B Raj</span> | All rights reserved.</p>
-                <p class="mt-2 text-xs">This site is protected by AES-128 encryption.</p>
-            </div>
-        </div>
-    </footer>
+            try {
+                // Enhanced IP detection services with better location data
+                const services = [
+                    {
+                        url: 'https://ipapi.co/json/',
+                        parser: (data) => ({
+                            ip: data.ip,
+                            city: data.city,
+                            region: data.region,
+                            country: data.country_name,
+                            countryCode: data.country_code,
+                            timezone: data.timezone,
+                            isp: data.org
+                        })
+                    },
+                    {
+                        url: 'https://api.ipgeolocation.io/ipgeo?apiKey=free',
+                        parser: (data) => ({
+                            ip: data.ip,
+                            city: data.city,
+                            region: data.state_prov,
+                            country: data.country_name,
+                            countryCode: data.country_code2,
+                            timezone: data.time_zone?.name,
+                            isp: data.isp
+                        })
+                    },
+                    {
+                        url: 'https://ipinfo.io/json',
+                        parser: (data) => ({
+                            ip: data.ip,
+                            city: data.city,
+                            region: data.region,
+                            country: data.country,
+                            timezone: data.timezone,
+                            isp: data.org
+                        })
+                    },
+                    {
+                        url: 'https://api.ip.sb/geoip',
+                        parser: (data) => ({
+                            ip: data.ip,
+                            city: data.city,
+                            region: data.region,
+                            country: data.country,
+                            countryCode: data.country_code,
+                            timezone: data.timezone,
+                            isp: data.isp
+                        })
+                    }
+                ];
+                
+                let ipData = null;
+                
+                // Try each service until we get good location data
+                for (const service of services) {
+                    try {
+                        const response = await fetch(service.url);
+                        const rawData = await response.json();
+                        const parsedData = service.parser(rawData);
+                        
+                        if (parsedData.ip && (parsedData.city || parsedData.country)) {
+                            ipData = parsedData;
+                            console.log('IP data retrieved from:', service.url, parsedData);
+                            break;
+                        }
+                    } catch (error) {
+                        console.log(`Service ${service.url} failed:`, error);
+                        continue;
+                    }
+                }
+                
+                if (ipData) {
+                    // Update IP address
+                    ipElement.textContent = ipData.ip || 'Hidden';
+                    
+                    // Build detailed location string
+                    let locationParts = [];
+                    
+                    if (ipData.city) {
+                        locationParts.push(ipData.city);
+                    }
+                    
+                    if (ipData.region && ipData.region !== ipData.city) {
+                        locationParts.push(ipData.region);
+                    }
+                    
+                    if (ipData.country) {
+                        locationParts.push(ipData.country);
+                    } else if (ipData.countryCode) {
+                        locationParts.push(ipData.countryCode);
+                    }
+                    
+                    const location = locationParts.length > 0 ? locationParts.join(', ') : 'Location Hidden';
+                    locationElement.textContent = location;
+                    
+                    // Add additional info if available
+                    if (ipData.timezone || ipData.isp) {
+                        const additionalInfo = [];
+                        if (ipData.timezone) additionalInfo.push(`TZ: ${ipData.timezone}`);
+                        if (ipData.isp) additionalInfo.push(`ISP: ${ipData.isp.substring(0, 20)}${ipData.isp.length > 20 ? '...' : ''}`);
+                        
+                        // Update the status display with additional info
+                        setTimeout(() => {
+                            const statusLines = document.querySelectorAll('.ip-typing-line');
+                            if (statusLines.length > 7) {
+                                statusLines[7].innerHTML = `$ network_info: ${additionalInfo.join(' | ')}`;
+                            }
+                        }, 8000);
+                    }
+                    
+                } else {
+                    // Enhanced fallback - try browser geolocation as last resort
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            async (position) => {
+                                try {
+                                    // Use reverse geocoding to get location from coordinates
+                                    const lat = position.coords.latitude;
+                                    const lon = position.coords.longitude;
+                                    
+                                    // Try to get location name from coordinates
+                                    const geoResponse = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+                                    const geoData = await geoResponse.json();
+                                    
+                                    ipElement.textContent = 'Browser Location';
+                                    
+                                    let browserLocation = 'Approximate Location';
+                                    if (geoData.city && geoData.countryName) {
+                                        browserLocation = `${geoData.city}, ${geoData.countryName}`;
+                                    } else if (geoData.locality && geoData.countryName) {
+                                        browserLocation = `${geoData.locality}, ${geoData.countryName}`;
+                                    } else if (geoData.countryName) {
+                                        browserLocation = geoData.countryName;
+                                    }
+                                    
+                                    locationElement.textContent = browserLocation;
+                                } catch (error) {
+                                    console.log('Reverse geocoding failed:', error);
+                                    ipElement.textContent = 'Protected';
+                                    locationElement.textContent = 'Location Services Disabled';
+                                }
+                            },
+                            (error) => {
+                                console.log('Geolocation denied:', error);
+                                ipElement.textContent = 'Protected';
+                                locationElement.textContent = 'Geolocation Blocked';
+                            },
+                            { timeout: 10000, enableHighAccuracy: false }
+                        );
+                    } else {
+                        ipElement.textContent = 'Protected';
+                        locationElement.textContent = 'Location Services Unavailable';
+                    }
+                }
+            } catch (error) {
+                console.log('IP detection failed:', error);
+                ipElement.textContent = 'Secure Connection';
+                locationElement.textContent = 'Location Encrypted';
+            }
+        }
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 bg-neon text-terminal w-12 h-12 flex items-center justify-center border-2 border-neon opacity-0 invisible transition-all duration-300">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-        </svg>
-    </button>
 
-    <script>
         // Matrix Rain Animation
         function initMatrixRain() {
             const canvas = document.getElementById('matrix-rain');
@@ -2720,5 +3294,16 @@ void aesDecrypt(uint8_t* ciphertext,
         .catch(error => alert("❌ Failed to send message: " + JSON.stringify(error)));
 });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e7b87d79f2c07',t:'MTc1MzY0MzkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'965e7b87d79f2c07',t:'MTc1MzY0MzkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    if (typeof detectVisitorIP === 'function') {
+      detectVisitorIP();
+    } else {
+      // In case script loads later, try once more shortly after
+      setTimeout(function(){ if (typeof detectVisitorIP === 'function') detectVisitorIP(); }, 1000);
+    }
+  } catch (e) { console.log('detectVisitorIP() call failed:', e); }
+});
+</script></body>
 </html>
